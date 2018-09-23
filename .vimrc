@@ -166,6 +166,7 @@ cmap w!! w !sudo tee % >/dev/null
 "map Y :'<,'>w !xclip -i -sel c<CR><CR>
 "nnoremap Y y$
 nnoremap Y "*y
+vnoremap Y "*y
 
 " permanent undo history of files
 let s:undoDir = "/Users/bealox/.vim/undo"
@@ -224,8 +225,8 @@ map <S-Down> <C-e>
 "inoremap <S-Down> <C-x><C-e>
 
 "shift up and dow to switch tabs
-map <S-Up> gt
-map <S-Down> gT
+map <S-Up> gT
+map <S-Down> gt
 
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
