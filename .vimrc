@@ -84,7 +84,6 @@ autocmd FileType python set foldlevel=1
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd BufRead,BufNewFile *.screenplay    set filetype=screenplay
 autocmd BufWritePost */alloc/javascript/*.js :silent !(make cache > /dev/null)
 autocmd BufWritePost */alloc/css/src/* :silent       !(make css > /dev/null)
@@ -130,12 +129,17 @@ highlight SpellRare     ctermfg=Magenta     ctermbg=none
 endif
 
 " Tab settings
+" Clear golang vim mapping
+if exists("GoDef")
+  nunmap <C-t>
+endif
+
 nmap <C-t> :tabnew<CR>:e<space>
 imap <C-t> <Esc>:tabnew<CR>:e<space>
-nmap [1;2D :tabp<CR>
-nmap [1;2C :tabn<CR>
-imap [1;2D <Esc>:tabp<CR>
-imap [1;2C <Esc>:tabn<CR>
+map <S-Up> :tabn<CR>
+imap <S-Up> :tabn<CR>
+map <S-Down> :tabp<CR>
+imap <S-Down> :tabp<CR>
 set showtabline=2
 set tabpagemax=500
 
@@ -219,16 +223,6 @@ au BufRead,BufNewFile *.tf setlocal filetype=terraform
 au BufRead,BufNewFile *.tfvars setlocal filetype=terraform
 au BufRead,BufNewFile *.tfstate setlocal filetype=javascript
 
-map <S-Up> <C-y>
-map <S-Down> <C-e>
-"inoremap <S-Up> <C-x><C-y>
-"inoremap <S-Down> <C-x><C-e>
-
-"shift up and dow to switch tabs
-map <S-Up> gT
-map <S-Down> gt
 
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
-
-
