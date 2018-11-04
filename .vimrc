@@ -130,12 +130,8 @@ endif
 
 " Tab settings
 " Clear golang vim mapping
-if exists("GoDef")
-  nunmap <C-t>
-endif
-
-nmap <C-t> :tabnew<CR>:e<space>
-imap <C-t> <Esc>:tabnew<CR>:e<space>
+" autocmd FileType go nunmap <buffer>  <C-t>
+nmap <S-t> :tabnew<CR>:e<space>
 map <S-Up> :tabn<CR>
 imap <S-Up> :tabn<CR>
 map <S-Down> :tabp<CR>
@@ -188,7 +184,6 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 
 " Go (golang) whitespace: real tabs.
 autocmd FileType go setlocal sts=2 ts=2 sw=2 tabstop=2 noexpandtab nospell
-autocmd FileType php setlocal sts=2 ts=2 sw=2 tabstop=2 expandtab nospell
 autocmd FileType python setlocal sts=2 ts=2 sw=2 tabstop=2 expandtab nospell
 
 set copyindent
