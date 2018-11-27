@@ -223,4 +223,4 @@ map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
 filetype plugin indent on
-autocmd BufWritePre *.sh normal mzgg=G`z "mz = make a mark, gg=G = format whole file, `z = move to first mark
+autocmd BufWritePre *.sh normal mzgg=G`z
