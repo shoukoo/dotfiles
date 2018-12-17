@@ -131,7 +131,7 @@ endif
 " Tab settings
 " Clear golang vim mapping
 " autocmd FileType go nunmap <buffer>  <C-t>
-nmap <S-t> :tabnew<CR>:e<space>
+nmap <C-t> :tabnew<CR>:e<space>
 map <S-Up> :tabn<CR>
 imap <S-Up> :tabn<CR>
 map <S-Down> :tabp<CR>
