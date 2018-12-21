@@ -222,5 +222,5 @@ au BufRead,BufNewFile *.tfstate setlocal filetype=javascript
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-filetype plugin indent on
-autocmd BufWritePre *.sh normal mzgg=G`z
+" filetype plugin indent on
+" autocmd BufWritePre *.sh normal mzgg=G`z

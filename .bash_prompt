@@ -98,6 +98,8 @@ else
 	userStyle="${orange}";
 fi;
 
+[ -v AWS_SECRET_ACCESS_KEY ] && userStyle="${purple}"
+
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
 	hostStyle="${bold}${red}";
