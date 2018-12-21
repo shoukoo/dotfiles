@@ -169,7 +169,7 @@ nnoremap Y "*y
 vnoremap Y "*y
 
 " permanent undo history of files
-let s:undoDir = "/Users/bealox/.vim/undo"
+let s:undoDir = "$HOME/.vim/undo"
 let &undodir=s:undoDir
 set undofile
 
@@ -190,8 +190,8 @@ set copyindent
 
 " turn on backup
 set backup
-set backupdir=/Users/bealox/.vim/tmp/
-set dir=/Users/bealox/.vim/tmp/
+set backupdir=$HOME/.vim/tmp/
+set dir=$HOME/.vim/tmp/
 
 " list char
 highlight SpecialKey ctermfg=236
@@ -221,3 +221,6 @@ au BufRead,BufNewFile *.tfstate setlocal filetype=javascript
 
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
+" filetype plugin indent on
+" autocmd BufWritePre *.sh normal mzgg=G`z
