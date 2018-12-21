@@ -224,3 +224,7 @@ map <C-p> :cp<CR>
 
 " filetype plugin indent on
 " autocmd BufWritePre *.sh normal mzgg=G`z
+
+" undo files
+set undofile
+set undodir=$HOME/.vimundo/
