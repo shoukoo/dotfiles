@@ -1,5 +1,6 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
+export GO111MODUL=on
 
 if [ "$HOSTNAME" == "bealox" ];then
   export GOPATH=/Users/bealox/Projects/go

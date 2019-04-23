@@ -80,6 +80,7 @@ map <C-J> <Esc>:%!python -m json.tool<CR>
 " omni autocompletions per-language
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType go set omnifunc=gocomplete#Complete
 autocmd FileType python set foldlevel=1
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -131,7 +132,7 @@ endif
 " Tab settings
 " Clear golang vim mapping
 " autocmd FileType go nunmap <buffer>  <C-t>
-nmap <C-t> :tabnew<CR>:e<space>
+nmap <leader>t :tabnew<CR>:e<space>
 map <S-Up> :tabn<CR>
 imap <S-Up> :tabn<CR>
 map <S-Down> :tabp<CR>
@@ -228,3 +229,13 @@ map <C-p> :cp<CR>
 " undo files
 set undofile
 set undodir=$HOME/.vimundo/
+
+" golang
+" call goimports on save
+let g:go_fmt_command = "goimports"
+
+" Nerdtree
+map <C-n> :NERDTreeToggle<CR>
+let g:go_def_mode='gopls'
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
