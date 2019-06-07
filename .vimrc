@@ -215,7 +215,7 @@ set hlsearch
 highlight Search ctermbg=162
 nnoremap <CR> :noh<CR><CR>
 
-au BufRead,BufNewFile *.tf setlocal filetype=terraform
+" au BufRead,BufNewFile *.tf setlocal filetype=terraform
 au BufRead,BufNewFile *.tfvars setlocal filetype=terraform
 au BufRead,BufNewFile *.tfstate setlocal filetype=javascript
 
@@ -223,19 +223,19 @@ au BufRead,BufNewFile *.tfstate setlocal filetype=javascript
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-" filetype plugin indent on
-" autocmd BufWritePre *.sh normal mzgg=G`z
-
 " undo files
 set undofile
 set undodir=$HOME/.vimundo/
 
 " golang
-" call goimports on save
-let g:go_fmt_command = "goimports"
-
-" Nerdtree
-map <C-n> :NERDTreeToggle<CR>
 let g:go_def_mode='gopls'
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
+" call goimports on save
+let g:go_fmt_command = "goimports"
+
+" terraform
+autocmd FileType terraform nmap <leader>p :Terraform plan <cr>
+
+" Nerdtree
+map <C-n> :NERDTreeToggle<CR>
