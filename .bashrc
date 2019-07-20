@@ -7,7 +7,8 @@
 ###############
 
 export GOPATH=$HOME/Documents/go
-export GO111MODUL=on
+export GO111MODULE=on
+export AWS_REGIONS="us-west-2 ap-southeast-2"
 export PATH="$HOME/bin:$PATH";
 export PATH=$PATH:$GOPATH/bin
 
@@ -71,4 +72,7 @@ shopt -s no_empty_cmd_completion
 shopt -s nocaseglob
 
 # https://github.com/99designs/aws-vault
+export GO111MODULE=on
+export AWS_REGIONS="us-west-2 ap-southeast-2"
+#alias awshell="aws-vault exec production --no-session -- bash"
 awsv() { aws-vault exec "$@" --no-session -- bash;}
