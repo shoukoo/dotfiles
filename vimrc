@@ -40,7 +40,6 @@ set shiftround        " round to 'shiftwidth' for "<<" and ">>"
 set nowrapscan        " don't wrap searches around to the top of the file
 set iskeyword+=-      " make cw consider the dash character as a normal word char
 
-silent! colorscheme hybrid_material
 let mapleader=","
 
 " Plugin supertab
