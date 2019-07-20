@@ -6,6 +6,7 @@ sync:
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	[ -f ~/.bashrc ] || ln -s $(PWD)/bashrc ~/.bashrc
+	[ -f ~/.bash_profile ] || ln -s $(PWD)/bashprofile ~/.bash_profile
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
 
@@ -16,6 +17,7 @@ clean:
 	rm -f ~/.vimrc
 	rm -f ~/.config/alacritty/alacritty.yml
 	rm -f ~/.bashrc
+	rm -f ~/.bash_profile
 	rm -f ~/.tmux.conf
 	rm -f ~/.git-prompt.sh
 
