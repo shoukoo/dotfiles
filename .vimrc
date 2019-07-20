@@ -41,23 +41,9 @@ set nowrapscan        " don't wrap searches around to the top of the file
 set iskeyword+=-      " make cw consider the dash character as a normal word char
 
 silent! colorscheme hybrid_material
-
 let mapleader=","
 
-" quit/exit shortcuts fat fingers
-cmap Q<CR> q<CR>
-cmap Q!<CR> q!<CR>
-cmap Q1<CR> q!<CR>
-cmap q1<CR> q!<CR>
-cmap Wq<CR> wq<CR>
-map Y y$
-map Q :q<CR>
-map W :w<CR>
-
-map <C-d> :q!<CR>
-imap <C-d> <Esc>:q!<CR>
-map <Space> i
-
+" Plugin supertab
 function! SuperTab()
     if (strpart(getline('.'),col('.')-2,1)=~'^\W\?$')
         return "\<Tab>"
@@ -70,7 +56,6 @@ inoremap <Tab> <C-R>=SuperTab()<CR>
 set ttyfast
 noremap j gj
 noremap k gk
-let mapleader=","
 nnoremap <leader>z zMzvzz
 nnoremap K <nop>
 nnoremap ; :
@@ -80,7 +65,6 @@ map <C-J> <Esc>:%!python -m json.tool<CR>
 " omni autocompletions per-language
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType go set omnifunc=gocomplete#Complete
 autocmd FileType python set foldlevel=1
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -107,6 +91,9 @@ au BufNewFile,BufRead muttng-*-\w\+ setf mail
 " for long lines
 noremap j gj
 noremap k gk
+
+" Save to system clipboard
+map Y y$
 
 "  make <Backspace> act as <Delete> in Visual mode?
 vmap <BS> x
@@ -239,3 +226,6 @@ map <C-n> :NERDTreeToggle<CR>
 let g:go_def_mode='gopls'
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go map <leader>n :cnext<CR>
+autocmd FileType go map <leader>m :cprevious<CR>
+autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
