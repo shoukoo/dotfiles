@@ -135,7 +135,7 @@ highlight TabLineSel    ctermfg=white ctermbg=202
 highlight TabLineFill   term=bold cterm=bold ctermbg=None
 
 " open the quickfix window after doing a grep
-autocmd QuickFixCmdPost *grep* cwindow
+" autocmd QuickFixCmdPost *grep* cwindow
 
 " For when you :grep something and you want to go through the changes
 map <F8> <Esc>:cn<CR>
@@ -223,9 +223,9 @@ let g:go_fmt_command = "goimports"
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
-let g:go_def_mode='gopls'
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go map <leader>n :cnext<CR>
-autocmd FileType go map <leader>m :cprevious<CR>
-autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+autocmd FileType go nmap <leader>n :cnext<CR>
+autocmd FileType go nmap <leader>m :cprevious<CR>
+autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
+" autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
