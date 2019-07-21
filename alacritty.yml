@@ -660,8 +660,8 @@ key_bindings:
   - { key: T,     mods: Command,       chars: "\x06\x63" }
   - { key: W,     mods: Command,       chars: "\x06\x78" }
   - { key: D,     mods: Command,       chars: "\x06\x76" }
-  - { key: D,     mods: Command|Shift, chars: "\x06\x73" }
-  - { key: H,     mods: Command,       chars: "\x06\x68" }
-  - { key: J,     mods: Command,       chars: "\x06\x6a" }
-  - { key: K,     mods: Command,       chars: "\x06\x6b" }
-  - { key: L,     mods: Command,       chars: "\x06\x6c" }
+  - { key: D,     mods: Command|Shift, chars: "\x06\x22\x0a" }
+  - { key: H,     mods: Command,       chars: "\x06\x70" }
+  - { key: J,     mods: Command,       chars: "\x06\x6f" }
+  - { key: K,     mods: Command,       chars: "\x06\x6f" }
+  - { key: L,     mods: Command,       chars: "\x06\x6e" }
