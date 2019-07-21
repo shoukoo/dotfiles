@@ -1,5 +1,3 @@
-all: build
-
 sync:
 	mkdir -p ~/.config/alacritty
 
