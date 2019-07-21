@@ -119,10 +119,10 @@ endif
 " Clear golang vim mapping
 " autocmd FileType go nunmap <buffer>  <C-t>
 nmap <leader>t :tabnew<CR>:e<space>
-map <S-Up> :tabn<CR>
-imap <S-Up> :tabn<CR>
-map <S-Down> :tabp<CR>
-imap <S-Down> :tabp<CR>
+map <leader>n :tabn<CR>
+imap <leader>n :tabn<CR>
+map <leader>m :tabp<CR>
+imap <leader>m :tabp<CR>
 set showtabline=2
 set tabpagemax=500
 
