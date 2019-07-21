@@ -15,6 +15,8 @@ export PATH=$PATH:$GOPATH/bin
 export EDITOR="vim"
 
 export CLICOLOR=1
+# checkout `man ls` for the meaning
+export LSCOLORS=cxBxhxDxfxhxhxhxhxcxcx
 
 # enable GIT prompt options
 export GIT_PS1_SHOWCOLORHINTS=true
