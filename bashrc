@@ -23,6 +23,7 @@ export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 
+###########
 # -- Source some files
 
 # On Mac OS X: brew install bash-completion
@@ -42,7 +43,12 @@ fi
 # 4. AWS Vault is being showed
 export PROMPT_COMMAND='__git_ps1 "\[$(tput setaf 6)\]\W\[$(tput sgr0)\]\[$(tput sgr0)\]" " "; echo -ne "\033]0;${PWD##*/}\007"; [ "${AWS_VAULT}" ] && echo -ne "\033[0;33maws-${AWS_VAULT} ";'
 
+###############
+# -- Aliases (custom)
+#alias vi='nvim'
+#alias vim='nvim'
 
+############
 # -- Misc
 
 # Colored man pages

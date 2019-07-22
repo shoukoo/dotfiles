@@ -1,7 +1,9 @@
 sync:
 	mkdir -p ~/.config/alacritty
+	mkdir -p ~/.config/nvim
 
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
+	[ -f ~/.config/nvim/init.vim ] || ln -s $(PWD)/vimrc ~/.config/nvim/init.vim
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	[ -f ~/.bashrc ] || ln -s $(PWD)/bashrc ~/.bashrc
 	[ -f ~/.bash_profile ] || ln -s $(PWD)/bashprofile ~/.bash_profile
@@ -13,6 +15,7 @@ sync:
 
 clean:
 	rm -f ~/.vimrc
+	rm -f ~/.config/nvim/init.vim
 	rm -f ~/.config/alacritty/alacritty.yml
 	rm -f ~/.bashrc
 	rm -f ~/.bash_profile
