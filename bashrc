@@ -26,6 +26,10 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 ###########
 # -- Source some files
 
+
+# Senstive functions which are not pushed to Github
+[ -r ~/.bash_private ] && source ~/.bash_private
+
 # On Mac OS X: brew install bash-completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
