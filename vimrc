@@ -1,233 +1,310 @@
-set nocompatible        " must be the first line
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
 
-set viminfo+=n~/.vim/viminfo
-filetype on
-filetype plugin on
-syntax on
+Plug 'fatih/vim-go'
+Plug 'elzr/vim-json', {'for' : 'json'}
+Plug 'scrooloose/nerdtree'
+Plug 'hashivim/vim-hashicorp-tools'
+Plug 'tpope/vim-fugitive' " Status line
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'ervandew/supertab'
 
-set mouse=
-set encoding=utf-8
-set hlsearch
-set nohidden " close tab closes buffer
-set expandtab
-set softtabstop=2
-set tabstop=2
-set foldmethod=marker
-set ruler
-set bs=2
-set sw=2
-set background=dark
-set backspace=indent,eol,start
-set laststatus=2
-set highlight=sb
-set t_kb=       " Nested screens change $TERM and render delete useles (ctrl-v + Backspace)
-set scrolloff=3
-set hidden
-set history=1000
-set ignorecase
-set smartcase
-set ttymouse=xterm2 " mouse support
-set ttyfast
-set wildmode=longest,list,full
-set wildmenu
-set confirm
-set noautochdir
-set bg=dark
-set grepprg=grep\ -rsin\ $*\ *
-set nojoinspaces      " Use only one space after '.' when joining lines, instead of two
-set shiftround        " round to 'shiftwidth' for "<<" and ">>"
-set nowrapscan        " don't wrap searches around to the top of the file
-set iskeyword+=-      " make cw consider the dash character as a normal word char
+call plug#end()
 
-let mapleader=","
+" ##################
+" -- Settings
+" ##################
 
-" Plugin supertab
-function! SuperTab()
-    if (strpart(getline('.'),col('.')-2,1)=~'^\W\?$')
-        return "\<Tab>"
-    else
-        return "\<C-n>"
-    endif
-endfunction
-inoremap <Tab> <C-R>=SuperTab()<CR>
+set nocompatible
+filetype off
+filetype plugin indent on
 
-set ttyfast
-noremap j gj
-noremap k gk
-nnoremap <leader>z zMzvzz
-nnoremap K <nop>
-nnoremap ; :
-map <C-P> gqip
-map <C-J> <Esc>:%!python -m json.tool<CR>
-
-" omni autocompletions per-language
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python set foldlevel=1
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd BufRead,BufNewFile *.screenplay    set filetype=screenplay
-autocmd BufWritePost */alloc/javascript/*.js :silent !(make cache > /dev/null)
-autocmd BufWritePost */alloc/css/src/* :silent       !(make css > /dev/null)
-
-" Disable the loading of hilighted matching parenthesis
-let loaded_matchparen = 1
-
-" put cursor back where it was last time when re-opening a file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" nuke all trailing space before a write
-au BufWritePre * :%s/\s\+$//e
-
-" lint python
-au BufWritePost *.py call Flake8()
-
-" So that muttng temp files for composing email have syntax highlighting
-au BufNewFile,BufRead muttng-*-\w\+ setf mail
-
-" for long lines
-noremap j gj
-noremap k gk
-
-" Save to system clipboard
-map Y y$
-
-"  make <Backspace> act as <Delete> in Visual mode?
-vmap <BS> x
-"This changes the behavior of the . command to leave the cursor at the point where it was before editing started
-nmap . .`[
-nnoremap ; :
-"map <C-J> <Esc>:%!python -m json.tool<CR>
-map <C-j> <Esc>:% !jq '.'<CR>
-
-abbreviate definately definitely
-abbreviate oppurtunity opportunity
-abbreviate alot a lot
-nmap gb i!gb!<esc>gqip?!gb!<cr>df!
-set ff=unix
-
-if (v:version >= 700)
-highlight SpellBad      ctermfg=Red         ctermbg=none
-highlight SpellCap      ctermfg=Magenta     ctermbg=none
-highlight SpellLocal    ctermfg=Magenta     ctermbg=none
-highlight SpellRare     ctermfg=Magenta     ctermbg=none
+if !has('nvim')
+  set ttymouse=xterm2
+  set ttyscroll=3
 endif
 
-" Tab settings
-" Clear golang vim mapping
-" autocmd FileType go nunmap <buffer>  <C-t>
-nmap <leader>t :tabnew<CR>:e<space>
-map <leader>n :tabn<CR>
-imap <leader>n :tabn<CR>
-map <leader>m :tabp<CR>
-imap <leader>m :tabp<CR>
-set showtabline=2
-set tabpagemax=500
+set ttyfast
+set laststatus=2
+set encoding=utf-8              " Set default encoding to UTF-8
+set hlsearch                    " Highlight found searches
+set mouse=a                     " Enable mouse mode
+set autoread                    " Automatically reread changed files without asking me anything
+set autoindent
 
-" Format a whole paragraph nicely
-nmap gb i!gb!<esc>gqip?!gb!<cr>df!
-set tabline=
-highlight TabLine       ctermfg=202 ctermbg=None cterm=None
-highlight TabLineSel    ctermfg=white ctermbg=202
-highlight TabLineFill   term=bold cterm=bold ctermbg=None
+set number                   " Show line numbers
+set showcmd                  " Show me what I'm typing
+set noswapfile               " Don't use swapfile
+set ignorecase               " Search case insensitive...
+set smartcase                " ... but not it begins with upper case
+set splitright               " Split vertical windows right to the current windows
+set splitbelow               " Split horizontal windows below to the current windows
+set autowrite                " Automatically save before :next, :make etc.
+set nocursorcolumn           " speed up syntax highlighting
+set nocursorline
 
-" open the quickfix window after doing a grep
-" autocmd QuickFixCmdPost *grep* cwindow
+" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
+set clipboard^=unnamed
+set clipboard^=unnamedplus
 
-" For when you :grep something and you want to go through the changes
-map <F8> <Esc>:cn<CR>
-map <S-F8> <Esc>:cp<CR>
+syntax enable
+set t_Co=256
+set background=dark
 
-" size of preview window, eg git status
-set previewheight=25
-map <C-g> <Esc>:Gstatus<CR>
-"map <C-G> :Dispatch! git stash ; git pull --rebase ; git push ; git stash pop<CR>
-
-map <S-F5> :GitGutterToggle<cr>:set invnumber<cr>:set invrelativenumber<cr>
-
-cmap w!! w !sudo tee % >/dev/null
-
-" yank into the system buffer
-"map Y :'<,'>w !xclip -i -sel c<CR><CR>
-"nnoremap Y y$
-nnoremap Y "*y
-vnoremap Y "*y
-
-" permanent undo history of files
-let s:undoDir = "$HOME/.vim/undo"
-let &undodir=s:undoDir
 set undofile
+set undodir=~/.cache/vim
 
-" keeps the current visual block selection active after changing indent with '<' or '>'
-vmap > >gv
-vmap < <gv
+augroup filetypedetect
+  command! -nargs=* -complete=help Help vertical belowright help <args>
+  autocmd FileType help wincmd L
 
-" Highlight trailing whitespace etc
-highlight ExtraWhitespace ctermbg=8
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+  autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
+  autocmd BufRead,BufNewFile *.gotmpl set filetype=gotexttmpl
 
-" Go (golang) whitespace: real tabs.
-autocmd FileType go setlocal sts=2 ts=2 sw=2 tabstop=2 noexpandtab nospell
-autocmd FileType python setlocal sts=2 ts=2 sw=2 tabstop=2 expandtab nospell
+  autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.tf setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
 
-set copyindent
+  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+  autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+augroup END
 
-" turn on backup
-set backup
-set backupdir=$HOME/.vim/tmp/
-set dir=$HOME/.vim/tmp/
+" ##################
+" -- Status Line
+" ##################
 
-" list char
-highlight SpecialKey ctermfg=236
-highlight Comment ctermfg=238
-"highlight TabLineSel ctermfg=White
-"highlight TabLine ctermfg=245
-highlight LineNr ctermfg=236
+let s:modes = {
+      \ 'n': 'NORMAL',
+      \ 'i': 'INSERT',
+      \ 'R': 'REPLACE',
+      \ 'v': 'VISUAL',
+      \ 'V': 'V-LINE',
+      \ "\<C-v>": 'V-BLOCK',
+      \ 'c': 'COMMAND',
+      \ 's': 'SELECT',
+      \ 'S': 'S-LINE',
+      \ "\<C-s>": 'S-BLOCK',
+      \ 't': 'TERMINAL'
+      \}
 
-"set number
-"set relativenumber
-set cursorline
+let s:prev_mode = ""
+function! StatusLineMode()
+  let cur_mode = get(s:modes, mode(), '')
 
-highlight cursorline cterm=none
-highlight cursorlinenr ctermfg=130
+  " do not update higlight if the mode is the same
+  if cur_mode == s:prev_mode
+    return cur_mode
+  endif
 
-" compile and install go programs on save
-autocmd BufWritePost *.go :GoInstall
+  if cur_mode == "NORMAL"
+    exe 'hi! StatusLine ctermfg=236'
+    exe 'hi! myModeColor cterm=bold ctermbg=148 ctermfg=22'
+  elseif cur_mode == "INSERT"
+    exe 'hi! myModeColor cterm=bold ctermbg=23 ctermfg=231'
+  elseif cur_mode == "VISUAL" || cur_mode == "V-LINE" || cur_mode == "V_BLOCK"
+    exe 'hi! StatusLine ctermfg=236'
+    exe 'hi! myModeColor cterm=bold ctermbg=208 ctermfg=88'
+  endif
 
-set hlsearch
-highlight Search ctermbg=162
-nnoremap <CR> :noh<CR><CR>
+  let s:prev_mode = cur_mode
+  return cur_mode
+endfunction
 
-" au BufRead,BufNewFile *.tf setlocal filetype=terraform
-au BufRead,BufNewFile *.tfvars setlocal filetype=terraform
-au BufRead,BufNewFile *.tfstate setlocal filetype=javascript
+function! StatusLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! StatusLinePercent()
+  return (100 * line('.') / line('$')) . '%'
+endfunction
+
+function! StatusLineLeftInfo()
+ let branch = fugitive#head()
+ let filename = '' != expand('%:t') ? expand('%:t') : '[No Name]'
+ if branch !=# ''
+   return printf("%s | %s", branch, filename)
+ endif
+ return filename
+endfunction
+
+exe 'hi! myInfoColor ctermbg=240 ctermfg=252'
+
+" start building our statusline
+set statusline=
+
+" mode with custom colors
+set statusline+=%#myModeColor#
+set statusline+=%{StatusLineMode()}
+set statusline+=%*
+
+" left information bar (after mode)
+set statusline+=%#myInfoColor#
+set statusline+=\ %{StatusLineLeftInfo()}
+set statusline+=\ %*
+
+" go command status (requires vim-go)
+set statusline+=%#goStatuslineColor#
+set statusline+=%{go#statusline#Show()}
+set statusline+=%*
+
+" right section seperator
+set statusline+=%=
+
+" filetype, percentage, line number and column number
+set statusline+=%#myInfoColor#
+set statusline+=\ %{StatusLineFiletype()}\ %{StatusLinePercent()}\ %l:%v
+set statusline+=\ %*
+
+" ##################
+" -- Mapping
+" ##################
 
 
+" This comes first, because we have mappings that depend on leader
+" With a map leader it's possible to do extra key combinations
+" i.e: <leader>w saves the current file
+let mapleader = ","
+
+
+" Some useful quickfix shortcuts for quickfix
 map <C-n> :cn<CR>
-map <C-p> :cp<CR>
+map <C-m> :cp<CR>
+nnoremap <leader>a :cclose<CR>
 
-" undo files
-set undofile
-set undodir=$HOME/.vimundo/
+" put quickfix window always to the bottom
+augroup quickfix
+    autocmd!
+    autocmd FileType qf wincmd J
+    autocmd FileType qf setlocal wrap
+augroup END
 
-" golang
-let g:go_def_mode='gopls'
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-" call goimports on save
+" Fast saving
+nnoremap <leader>w :w!<cr>
+nnoremap <silent> <leader>q :q!<CR>
+
+" Terminal settings
+if has('terminal')
+  " Kill job and close terminal window
+  tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
+
+  " switch to normal mode with esc
+  tnoremap <Esc> <C-W>N
+
+  " Open terminal in vertical, horizontal and new tab
+  nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
+  nnoremap <leader>ts :split<cr>:term ++curwin<CR>
+  nnoremap <leader>tt :tabnew<cr>:term ++curwin<CR>
+endif
+
+" ##################
+" -- Plugins
+" ##################
+
+" ==================== vim-go ====================
 let g:go_fmt_command = "goimports"
+let g:go_def_mode='gopls'
+let g:go_debug_windows = {
+      \ 'vars':  'leftabove 35vnew',
+      \ 'stack': 'botright 10new',
+\ }
 
-" terraform
-autocmd FileType terraform nmap <leader>p :Terraform plan <cr>
+let g:go_test_prepend_name = 1
+let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
 
-" Nerdtree
-map <C-n> :NERDTreeToggle<CR>
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>n :cnext<CR>
-autocmd FileType go nmap <leader>m :cprevious<CR>
-autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
-" autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+let g:go_null_module_warning = 0
+let g:go_echo_command_info = 1
+
+let g:go_autodetect_gopath = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_enabled = ['vet', 'golint']
+
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 0
+let g:go_highlight_operators = 1
+let g:go_highlight_format_strings = 0
+let g:go_highlight_function_calls = 0
+let g:go_gocode_propose_source = 1
+
+let g:go_modifytags_transform = 'camelcase'
+let g:go_fold_enable = []
+
+nmap <C-g> :GoDecls<cr>
+imap <C-g> <esc>:<C-u>GoDecls<cr>
+
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+augroup go
+  autocmd!
+
+  autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
+  autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
+  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+
+  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
+
+  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
+
+  autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <silent> <leader>t  <Plug>(go-test)
+  autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
+  autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
+
+  autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+
+  " I like these more!
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
+
+" ==================== NerdTree ====================
+" For toggling
+noremap <Leader>n :NERDTreeToggle<cr>
+noremap <Leader>f :NERDTreeFind<cr>
+let NERDTreeShowHidden=1
+
+" ==================== vim-json ====================
+let g:vim_json_syntax_conceal = 0
+
+" ==================== Completion + Snippet ====================
+" Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
+" pressing tab. I like this better than autocompletion, but it's still fast.
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+ 
+" ==================== FZF ====================
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_layout = { 'down': '~20%' }
+
+" search
+nmap <C-p> :FzfHistory<cr>
+imap <C-p> <esc>:<C-u>FzfHistory<cr>
+
+" search across files in the current directory
+nmap <C-b> :FzfFiles<cr>
+imap <C-b> <esc>:<C-u>FzfFiles<cr>
