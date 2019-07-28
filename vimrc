@@ -66,12 +66,12 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.tf setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType terraform setlocal expandtab shiftwidth=2 tabstop=2
 augroup END
 
 " ##################
@@ -186,6 +186,13 @@ augroup END
 " Fast saving
 nnoremap <leader>w :w!<cr>
 nnoremap <silent> <leader>q :q!<CR>
+
+" New tab
+nnoremap <leader>t :tabnew<cr>
+
+
+" Enter automatically into the files directory
+autocmd BufEnter * silent! lcd %:p:h
 
 " Terminal settings
 if has('terminal')
@@ -308,3 +315,6 @@ imap <C-p> <esc>:<C-u>FzfHistory<cr>
 " search across files in the current directory
 nmap <C-b> :FzfFiles<cr>
 imap <C-b> <esc>:<C-u>FzfFiles<cr>
+
+" ==================== vim-terraform ====================
+autocmd BufWritePost *.tf !terraform fmt
