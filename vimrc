@@ -184,13 +184,16 @@ augroup END
 nnoremap <leader>w :w!<cr>
 nnoremap <silent> <leader>q :q!<CR>
 
-" New tab
-" nnoremap <leader>t :tabnew<cr>
 
 if has('persistent_undo')
   set undofile
   set undodir=~/.cache/vim
 endif
+
+" Tab mapping
+nnoremap <leader>tn :tabnew<cr>:e <CR>
+nnoremap <leader>tk :tabNext<cr>
+nnoremap <leader>tj :tabprevious<cr>
 
 
 " Enter automatically into the files directory
