@@ -4,7 +4,7 @@ Plug 'fatih/vim-go'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'scrooloose/nerdtree'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
@@ -196,6 +196,20 @@ endif
 " Enter automatically into the files directory
 autocmd BufEnter * silent! lcd %:p:h
 
+" Terminal settings
+if has('terminal')
+  " Kill job and close terminal window
+  tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
+
+  " switch to normal mode with esc
+  tnoremap <Esc> <C-W>N
+
+  " Open terminal in vertical, horizontal and new tab
+  nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
+  nnoremap <leader>ts :split<cr>:term ++curwin<CR>
+  nnoremap <leader>tt :tabnew<cr>:term <CR>
+endif
+
 " ##################
 " -- Plugins
 " ##################
@@ -305,4 +319,4 @@ nmap <C-b> :FzfFiles<cr>
 imap <C-b> <esc>:<C-u>FzfFiles<cr>
 
 " ==================== vim-terraform ====================
-autocmd BufWritePost *.tf !terraform fmt
+autocmd BufWritePost *.tf !terraform fmt 
