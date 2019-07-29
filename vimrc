@@ -4,7 +4,7 @@ Plug 'fatih/vim-go'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'scrooloose/nerdtree'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'tpope/vim-fugitive' " Status line
+Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
@@ -50,9 +50,6 @@ set clipboard^=unnamedplus
 syntax enable
 set t_Co=256
 set background=dark
-
-set undofile
-set undodir=~/.cache/vim
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -188,25 +185,16 @@ nnoremap <leader>w :w!<cr>
 nnoremap <silent> <leader>q :q!<CR>
 
 " New tab
-nnoremap <leader>t :tabnew<cr>
+" nnoremap <leader>t :tabnew<cr>
+
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.cache/vim
+endif
 
 
 " Enter automatically into the files directory
 autocmd BufEnter * silent! lcd %:p:h
-
-" Terminal settings
-if has('terminal')
-  " Kill job and close terminal window
-  tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
-
-  " switch to normal mode with esc
-  tnoremap <Esc> <C-W>N
-
-  " Open terminal in vertical, horizontal and new tab
-  nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
-  nnoremap <leader>ts :split<cr>:term ++curwin<CR>
-  nnoremap <leader>tt :tabnew<cr>:term ++curwin<CR>
-endif
 
 " ##################
 " -- Plugins
