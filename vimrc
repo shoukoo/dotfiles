@@ -8,6 +8,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
+Plug 'nvie/vim-flake8'
 
 call plug#end()
 
@@ -321,5 +322,18 @@ imap <C-p> <esc>:<C-u>FzfHistory<cr>
 nmap <C-b> :FzfFiles<cr>
 imap <C-b> <esc>:<C-u>FzfFiles<cr>
 
+
+command! -bang -nargs=? -complete=dir F
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
+
 " ==================== vim-terraform ====================
 autocmd BufWritePost *.tf !terraform fmt 
+
+" ==================== flake 8 ====================
+autocmd BufWritePost *.py call flake8#Flake8()
