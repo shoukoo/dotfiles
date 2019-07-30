@@ -49,8 +49,8 @@ export PROMPT_COMMAND='__git_ps1 "\[$(tput setaf 6)\]\W\[$(tput sgr0)\]\[$(tput 
 
 ###############
 # -- Aliases (custom)
-alias vi='nvim'
-alias vim='nvim'
+#alias vi='nvim'
+#alias vim='nvim'
 
 ############
 # -- Misc
