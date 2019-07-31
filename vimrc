@@ -67,6 +67,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+  autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType terraform setlocal expandtab shiftwidth=2 tabstop=2
