@@ -11,6 +11,7 @@ Plug 'ervandew/supertab'
 Plug 'nvie/vim-flake8'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'davidoc/taskpaper.vim'
 
 call plug#end()
 
@@ -73,6 +74,7 @@ augroup filetypedetect
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType terraform setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType taskpaper setlocal expandtab shiftwidth=2 tabstop=2
 augroup END
 
 " ##################
@@ -194,28 +196,8 @@ if has('persistent_undo')
   set undodir=~/.cache/vim
 endif
 
-" Tab mapping
-nnoremap <leader>tn :tabnew<cr>:e <CR>
-nnoremap <leader>tk :tabNext<cr>
-nnoremap <leader>tj :tabprevious<cr>
-
-
 " Enter automatically into the files directory
 autocmd BufEnter * silent! lcd %:p:h
-
-" Terminal settings
-if has('terminal')
-  " Kill job and close terminal window
-  tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
-
-  " switch to normal mode with esc
-  tnoremap <Esc> <C-W>N
-
-  " Open terminal in vertical, horizontal and new tab
-  nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
-  nnoremap <leader>ts :split<cr>:term ++curwin<CR>
-  nnoremap <leader>tt :tabnew<cr>:term <CR>
-endif
 
 " ##################
 " -- Plugins
@@ -333,7 +315,6 @@ command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-
 
 " ==================== vim-terraform ====================
 autocmd BufWritePost *.tf !terraform fmt 
