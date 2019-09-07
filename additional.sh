@@ -6,5 +6,5 @@ set -euxo pipefail
 ta="$HOME/ICloud"
 so="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 if [ ! -d "$ta" ]; then
-  ln -s "$so" $ta
+  ln -s "$so" "$ta"
 fi
