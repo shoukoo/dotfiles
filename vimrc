@@ -11,7 +11,6 @@ Plug 'ervandew/supertab'
 Plug 'nvie/vim-flake8'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'davidoc/taskpaper.vim'
 
 call plug#end()
 
@@ -74,7 +73,6 @@ augroup filetypedetect
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType terraform setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd FileType taskpaper setlocal expandtab shiftwidth=2 tabstop=2
 augroup END
 
 " ##################
