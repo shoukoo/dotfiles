@@ -188,7 +188,6 @@ augroup END
 nnoremap <leader>w :w!<cr>
 nnoremap <silent> <leader>q :q!<CR>
 
-
 if has('persistent_undo')
   set undofile
   set undodir=~/.cache/vim

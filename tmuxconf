@@ -33,12 +33,12 @@ bind-key -T edit-mode-vi Down send-keys -X history-down
 bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
 
 # copy text with `y` in copy mode
-# bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel\; run "tmux save -|pbcopy >/dev/null 2>&1"
-bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
+bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel\; run "tmux save -|pbcopy >/dev/null 2>&1"
+#bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel "reattach-to-user-namespace pbcopy"
 
 # copy text with mouse selection without pressing any key
 bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel\; run "tmux save -|pbcopy >/dev/null 2>&1"
-bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel
+#bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel
 
 # https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-256.conf
 set-option -g status-bg colour235 #base02
@@ -72,7 +72,6 @@ set-option -g display-panes-active-colour colour33 #blue
 set-option -g display-panes-colour colour166 #orange
 # clock
 set-window-option -g clock-mode-colour green #green
-
 
 set -g status-interval 1
 set -g status-justify centre # center align window list
