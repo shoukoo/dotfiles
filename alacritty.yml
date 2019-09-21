@@ -658,6 +658,7 @@ key_bindings:
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
   - { key: NumpadEnter,             chars: "\n"                              }
   - { key: T,     mods: Command,       chars: "\x06\x63" }
+  - { key: S,     mods: Command,       chars: "\x06\x5b" }
   - { key: W,     mods: Command,       chars: "\x06\x78" }
   - { key: D,     mods: Command,       chars: "\x06\x76" }
   - { key: D,     mods: Command|Shift, chars: "\x06\x22\x0a" }
