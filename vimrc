@@ -1,13 +1,14 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
+Plug 'ervandew/supertab'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'scrooloose/nerdtree'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'tpope/vim-fugitive' 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
 Plug 'nvie/vim-flake8'
 Plug 'rking/ag.vim'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -218,8 +219,8 @@ let g:go_null_module_warning = 0
 let g:go_echo_command_info = 1
 
 let g:go_autodetect_gopath = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_enabled = ['vet', 'golint']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 
 let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
@@ -268,11 +269,11 @@ augroup go
 
   autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
 
-  " I like these more!
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
 augroup END
 
 " ==================== NerdTree ====================
@@ -292,7 +293,7 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
- 
+
 " ==================== FZF ====================
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_layout = { 'down': '~20%' }
