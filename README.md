@@ -27,3 +27,7 @@ FAQ
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm to fix 127 error code 
 ```
 
+Window management app
+```
+https://github.com/fikovnik/ShiftIt/releases
+```
