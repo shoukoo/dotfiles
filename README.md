@@ -1,5 +1,10 @@
 # Shoukoo’s dotfiles
 
+Download Brew files
+```
+brew bundle
+```
+
 Download the font
 ```
 https://github.com/source-foundry/Hack
