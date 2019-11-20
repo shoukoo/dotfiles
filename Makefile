@@ -6,6 +6,7 @@ sync:
 	[ -f ~/.config/nvim/init.vim ] || ln -s $(PWD)/vimrc ~/.config/nvim/init.vim
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	[ -f ~/.bashrc ] || ln -s $(PWD)/bashrc ~/.bashrc
+	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 	[ -f ~/.bash_profile ] || ln -s $(PWD)/bashprofile ~/.bash_profile
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
@@ -21,5 +22,6 @@ clean:
 	rm -f ~/.bash_profile
 	rm -f ~/.tmux.conf
 	rm -f ~/.git-prompt.sh
+	rm -f ~/.zshrc
 
 .PHONY: all clean sync build run kill
