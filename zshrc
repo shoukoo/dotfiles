@@ -165,6 +165,8 @@ zstyle ':completion:*' list-dirs-first true
 #    KEY BINDINGS
 # ===================
 bindkey '^r' history-incremental-search-backward
+bindkey "^a" beginning-of-line
+bindkey "^e" end-of-line
 
 # ===================
 #    MISC SETTINGS
