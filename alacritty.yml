@@ -193,7 +193,7 @@ colors:
 
   cursor:
     text:   '0xf1c1c1'
-    cursor: '0xff2600'
+    cursor: '0xD900FF'
 
     # Bright and dim foreground colors
     #
