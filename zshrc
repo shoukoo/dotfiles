@@ -221,3 +221,5 @@ awsv() { aws-vault exec "$@" --no-session -- zsh;}
 
 # brew install rbenv
 eval "$(rbenv init -)"
+# direnv
+eval "$(direnv hook zsh)"
