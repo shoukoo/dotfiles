@@ -14,6 +14,7 @@ Plug 'nvie/vim-flake8'
 Plug 'rking/ag.vim'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'takac/vim-hardtime'
 
 call plug#end()
 
@@ -327,3 +328,6 @@ autocmd BufWritePost *.tf !terraform fmt
 
 " ==================== flake 8 ====================
 autocmd BufWritePost *.py call flake8#Flake8()
+
+" ==================== vim hardtime ====================
+let g:hardtime_default_on = 1
