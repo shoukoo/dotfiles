@@ -331,3 +331,4 @@ autocmd BufWritePost *.py call flake8#Flake8()
 
 " ==================== vim hardtime ====================
 let g:hardtime_default_on = 1
+let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
