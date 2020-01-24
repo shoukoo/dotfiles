@@ -7,6 +7,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'tpope/vim-fugitive' 
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
