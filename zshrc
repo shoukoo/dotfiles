@@ -167,6 +167,10 @@ zstyle ':completion:*' list-dirs-first true
 bindkey '^r' history-incremental-search-backward
 bindkey "^a" beginning-of-line
 bindkey "^e" end-of-line
+#
+# enable edit-command-line
+autoload edit-command-line; zle -N edit-command-line
+bindkey "^x^e" edit-command-line
 
 # ===================
 #    MISC SETTINGS
