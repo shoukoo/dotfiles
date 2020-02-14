@@ -42,7 +42,7 @@ export LANG="en_US.UTF-8"
 # =============
 #
 
-export PATH="/usr/local/go/bin:$GOBIN:$HOME/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/bin:$PATH"
 
 export EDITOR="vim"
 export LSCOLORS=cxBxhxDxfxhxhxhxhxcxcx

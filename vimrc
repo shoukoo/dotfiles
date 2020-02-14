@@ -72,6 +72,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.todo setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
   autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
