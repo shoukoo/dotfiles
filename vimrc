@@ -259,7 +259,8 @@ augroup go
 
   autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
   autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
-  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
+  autocmd FileType go nmap <silent> <Leader>D <Plug>(go-def-tab)
 
   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
 
@@ -334,3 +335,5 @@ autocmd BufWritePost *.py call flake8#Flake8()
 " ==================== vim hardtime ====================
 let g:hardtime_default_on = 1
 let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+
+let g:go_debug=['shell-commands']
