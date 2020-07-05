@@ -326,6 +326,11 @@ command! -bang -nargs=* Ag
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
 
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-i': 'split',
+      \ 'ctrl-s': 'vsplit' }
+
 " ==================== vim-terraform ====================
 autocmd BufWritePost *.tf !terraform fmt 
 
