@@ -57,6 +57,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 # =============
 #    HISTORY
 # =============
