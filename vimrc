@@ -5,9 +5,10 @@ Plug 'ervandew/supertab'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'scrooloose/nerdtree'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
@@ -177,6 +178,8 @@ set statusline+=\ %*
 " i.e: <leader>w saves the current file
 let mapleader = ","
 
+" Remove trailing space
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Some useful quickfix shortcuts for quickfix
 map <C-n> :cn<CR>
@@ -200,7 +203,7 @@ if has('persistent_undo')
 endif
 
 " Enter automatically into the files directory
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
 
 " ##################
 " -- Plugins
@@ -332,9 +335,9 @@ let g:fzf_action = {
       \ 'ctrl-s': 'vsplit' }
 
 " ==================== vim-terraform ====================
-autocmd BufWritePost *.tf !terraform fmt 
+autocmd BufWritePost *.tf !terraform fmt
 
 " ==================== flake 8 ====================
 autocmd BufWritePost *.py call flake8#Flake8()
 
-let g:go_debug=['shell-commands']
+"let g:go_debug=['lsp']
