@@ -13,7 +13,7 @@ alias ..='cd ..'
 
 alias t="tig status"
 alias tigs="tig status" #old habits don't die
-alias d='git diff' 
+alias d='git diff'
 alias vi='vim'
 
 case `uname` in
@@ -24,7 +24,7 @@ case `uname` in
   ;;
   Linux)
     alias ll='ls -al'
-    alias ls='ls --color=auto' 
+    alias ls='ls --color=auto'
   ;;
 esac
 
@@ -71,59 +71,12 @@ setopt append_history
 setopt extended_history
 setopt hist_expire_dups_first
 # ignore duplication command history list
-setopt hist_ignore_dups 
+setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
 # share command history data
-setopt share_history 
-
-# =============
-#    PROMPT
-# =============
-autoload -U colors && colors
-setopt promptsubst
-
-local ret_status="%(?:%{$fg_bold[green]%}$:%{$fg_bold[green]%}$)"
-PROMPT='${ret_status} $(aws_vault) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
-
-# Outputs current branch info in prompt format
-function git_prompt_info() {
-  local ref
-  if [[ "$(command git config --get customzsh.hide-status 2>/dev/null)" != "1" ]]; then
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
-  fi
-}
-
-function aws_vault(){
-  local aws="%(?:%{$fg_bold[yellow]%}aws-$AWS_VAULT:%{$fg_bold[yellow]%}$)"
-  echo $aws
-}
-
-# Checks if working tree is dirty
-function parse_git_dirty() {
-  local STATUS=''
-  local FLAGS
-  FLAGS=('--porcelain')
-
-  if [[ "$(command git config --get customzsh.hide-dirty)" != "1" ]]; then
-    FLAGS+='--ignore-submodules=dirty'
-    STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
-  fi
-
-  if [[ -n $STATUS ]]; then
-    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-  else
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-  fi
-}
+setopt share_history
 
 # ===================
 #    AUTOCOMPLETION
@@ -181,7 +134,7 @@ bindkey "^x^e" edit-command-line
 typeset -U path PATH cdpath CDPATH fpath FPATH manpath MANPATH
 
 # only exit if we're not on the last pane
-	
+
 exit() {
   if [[ -z $TMUX ]]; then
     builtin exit
@@ -189,7 +142,7 @@ exit() {
   fi
 
   panes=$(tmux list-panes | wc -l)
-  wins=$(tmux list-windows | wc -l) 
+  wins=$(tmux list-windows | wc -l)
   count=$(($panes + $wins - 1))
   if [ $count -eq 1 ]; then
     tmux detach
@@ -228,3 +181,6 @@ awsv() { aws-vault exec "$@" --no-session -- zsh;}
 eval "$(rbenv init -)"
 # direnv
 eval "$(direnv hook zsh)"
+# stasrship (brew install starship)
+eval "$(starship init zsh)"
+

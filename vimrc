@@ -35,10 +35,10 @@ endif
 
 set ttyfast
 set laststatus=2
-set encoding=utf-8              " Set default encoding to UTF-8
-set hlsearch                    " Highlight found searches
-set mouse=a                     " Enable mouse mode
-set autoread                    " Automatically reread changed files without asking me anything
+set encoding=utf-8           " Set default encoding to UTF-8
+set hlsearch                 " Highlight found searches
+set mouse=a                  " Enable mouse mode
+set autoread                 " Automatically reread changed files without asking me anything
 set autoindent
 
 set number                   " Show line numbers
@@ -50,7 +50,7 @@ set splitright               " Split vertical windows right to the current windo
 set splitbelow               " Split horizontal windows below to the current windows
 set autowrite                " Automatically save before :next, :make etc.
 set nocursorcolumn           " speed up syntax highlighting
-set nocursorline
+set cursorline 		     " Underline the current line number
 
 " http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 set clipboard^=unnamed
