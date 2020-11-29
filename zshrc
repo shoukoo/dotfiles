@@ -183,4 +183,3 @@ eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 # stasrship (brew install starship)
 eval "$(starship init zsh)"
-

@@ -5,9 +5,9 @@ Plug 'ervandew/supertab'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'scrooloose/nerdtree'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -17,6 +17,7 @@ Plug 'rking/ag.vim'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'leafgarland/typescript-vim'
+Plug 'google/vim-jsonnet'
 
 call plug#end()
 
@@ -72,6 +73,8 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.jsonnet setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.libsonnet setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.todo setlocal expandtab shiftwidth=2 tabstop=2
 
