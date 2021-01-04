@@ -1,23 +1,24 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'fatih/vim-go'
-Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
 Plug 'elzr/vim-json', {'for' : 'json'}
-Plug 'scrooloose/nerdtree'
+Plug 'ervandew/supertab'
+Plug 'fatih/molokai'
+Plug 'fatih/vim-go'
+Plug 'google/vim-jsonnet'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'SirVer/ultisnips'
+Plug 'leafgarland/typescript-vim'
 Plug 'nvie/vim-flake8'
 Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'leafgarland/typescript-vim'
-Plug 'google/vim-jsonnet'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -60,6 +61,7 @@ set clipboard^=unnamedplus
 syntax enable
 set t_Co=256
 set background=dark
+colorscheme molokai
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>

@@ -1,3 +1,6 @@
+dump:
+	brew bundle dump
+
 sync:
 	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/nvim
