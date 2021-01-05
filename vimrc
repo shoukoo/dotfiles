@@ -183,6 +183,10 @@ set statusline+=\ %*
 " i.e: <leader>w saves the current file
 let mapleader = ","
 
+" .vimrc stuff
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
 " Remove trailing space
 autocmd BufWritePre * :%s/\s\+$//e
 
