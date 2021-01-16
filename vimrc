@@ -10,8 +10,6 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'nvie/vim-flake8'
-Plug 'plasticboy/vim-markdown'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -20,13 +18,13 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
-" ##################
-" -- Settings
-" ##################
+" za to fold/unfold lines
 
+" Settings {{{
 set nocompatible
 filetype off
 filetype plugin indent on
@@ -86,11 +84,13 @@ augroup filetypedetect
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType terraform setlocal expandtab shiftwidth=2 tabstop=2
-augroup END
 
-" ##################
-" -- Status Line
-" ##################
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+
+" Statusline settings {{{
 
 let s:modes = {
       \ 'n': 'NORMAL',
@@ -174,10 +174,10 @@ set statusline+=%#myInfoColor#
 set statusline+=\ %{StatusLineFiletype()}\ %{StatusLinePercent()}\ %l:%v
 set statusline+=\ %*
 
-" ##################
-" -- Mapping
-" ##################
+" }}}
 
+
+" Mapping {{{
 
 " This comes first, because we have mappings that depend on leader
 " With a map leader it's possible to do extra key combinations
@@ -212,14 +212,19 @@ if has('persistent_undo')
   set undodir=~/.cache/vim
 endif
 
+" toggle relative number
+nnoremap <leader>z :set relativenumber!<cr>
+
 " Enter automatically into the files directory
-" autocmd BufEnter * silent! lcd %:p:h
+autocmd BufEnter * silent! lcd %:p:h
+" }}}
+
 
 " ##################
 " -- Plugins
 " ##################
 
-" ==================== vim-go ====================
+" vim-go {{{
 let g:go_fmt_command = "goimports"
 let g:go_def_mode='gopls'
 let g:go_debug_windows = {
@@ -293,16 +298,23 @@ augroup go
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
 augroup END
+" }}}
 
-" ==================== NerdTree ====================
+
+" Nerdtree {{{
 " For toggling
 noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
+" }}}
 
-" ==================== vim-json ====================
+
+" vim-json {{{
 let g:vim_json_syntax_conceal = 0
+" }}}
 
+
+" Completetion + snippet {{{
 " ==================== Completion + Snippet ====================
 " Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
 " pressing tab. I like this better than autocompletion, but it's still fast.
@@ -311,8 +323,10 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}
 
-" ==================== FZF ====================
+
+" FZF {{{
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_layout = { 'down': '~20%' }
 
@@ -343,11 +357,9 @@ let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-i': 'split',
       \ 'ctrl-s': 'vsplit' }
+" }}}
 
-" ==================== vim-terraform ====================
+
+" vim-terraform {{{
 autocmd BufWritePost *.tf !terraform fmt
-
-" ==================== flake 8 ====================
-autocmd BufWritePost *.py call flake8#Flake8()
-
-"let g:go_debug=['lsp']
+" }}}
