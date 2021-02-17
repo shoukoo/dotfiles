@@ -18,7 +18,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'plasticboy/vim-markdown'
+Plug 'vmchale/dhall-vim'
 
 call plug#end()
 
@@ -216,7 +216,7 @@ endif
 nnoremap <leader>z :set relativenumber!<cr>
 
 " Enter automatically into the files directory
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
 " }}}
 
 
@@ -363,3 +363,8 @@ let g:fzf_action = {
 " vim-terraform {{{
 autocmd BufWritePost *.tf !terraform fmt
 " }}}
+
+
+" dhall {{{
+autocmd BufWritePre *.dhall :silent :%!dhall format
+"! }}}
