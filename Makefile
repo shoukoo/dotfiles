@@ -5,6 +5,9 @@ sync:
 	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/nvim
 
+	# Go stuff
+	go get -u github.com/justjanne/powerline-go
+
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/nvim/init.vim ] || ln -s $(PWD)/vimrc ~/.config/nvim/init.vim
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
