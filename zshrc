@@ -183,7 +183,7 @@ eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 # powerline-go
 function powerline_precmd() {
-    PS1="$($GOPATH/bin/powerline-go -modules="aws,kube,venv,ssh,cwd,perms,git,exit,root," -error $? -jobs ${${(%):%j}:-0})"
+    PS1="$($GOPATH/bin/powerline-go -modules="aws,kube,venv,ssh,cwd,perms,git,exit,root" -error $? -jobs ${${(%):%j}:-0})"
 
     # Uncomment the following line to automatically clear errors after showing
     # them once. This not only clears the error for powerline-go, but also for
