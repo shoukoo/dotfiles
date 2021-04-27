@@ -1,5 +1,9 @@
-dump:
+brew-dump:
 	brew bundle dump
+
+brew-list:
+	brew outdated
+
 
 sync:
 	mkdir -p ~/.config/alacritty
