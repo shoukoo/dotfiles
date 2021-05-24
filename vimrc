@@ -239,6 +239,8 @@ let g:go_auto_sameids = 0
 
 let g:go_null_module_warning = 0
 let g:go_echo_command_info = 1
+let g:go_addtags_transform = 'camelcase'
+
 
 let g:go_autodetect_gopath = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
