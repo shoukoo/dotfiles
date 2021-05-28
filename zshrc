@@ -206,8 +206,28 @@ if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 fi
 
 # zsh-histdb https://github.com/larkery/zsh-histdb
-HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
-autoload -Uz add-zsh-hook
-source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
-bindkey '^r' _histdb-isearch
+# HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+# source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+# autoload -Uz add-zsh-hook
+# source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
+# bindkey '^r' _histdb-isearch
+
+
+function switchgo() {
+  version=$1
+  if [ -z $version ]; then
+    echo "Usage: switchgo [version]"
+    return
+  fi
+
+  if ! command -v "go$version" > /dev/null 2>&1; then
+    echo "version does not exist, download with: "
+    echo "  go get golang.org/dl/go${version}"
+    echo "  ${version} download"
+    return
+  fi
+
+  go_bin_path=$(command -v "go$version")
+  ln -sf "$go_bin_path" "$GOBIN/go"
+  echo "Switched to ${go_bin_path}"
+}
