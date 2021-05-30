@@ -205,12 +205,12 @@ if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
 
-# zsh-histdb https://github.com/larkery/zsh-histdb
-# HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-# source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
-# autoload -Uz add-zsh-hook
-# source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
-# bindkey '^r' _histdb-isearch
+ zsh-histdb https://github.com/larkery/zsh-histdb
+ HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+ source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+ autoload -Uz add-zsh-hook
+ source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
+ bindkey '^r' _histdb-isearch
 
 
 function switchgo() {
