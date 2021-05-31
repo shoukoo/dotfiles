@@ -19,6 +19,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vmchale/dhall-vim'
+Plug 'nanotech/jellybeans.vim'
+
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 
 call plug#end()
 
@@ -60,7 +65,7 @@ set clipboard^=unnamedplus
 syntax enable
 set t_Co=256
 set background=dark
-colorscheme molokai
+colorscheme jellybeans
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
