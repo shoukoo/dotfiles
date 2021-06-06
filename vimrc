@@ -3,13 +3,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips'
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'ervandew/supertab'
-Plug 'fatih/molokai'
 Plug 'fatih/vim-go'
 Plug 'google/vim-jsonnet'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -17,11 +15,11 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vmchale/dhall-vim'
 Plug 'nanotech/jellybeans.vim'
 
-Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 
@@ -82,6 +80,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.jsonnet setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.libsonnet setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.tsx setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.todo setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
@@ -221,7 +220,7 @@ endif
 nnoremap <leader>z :set relativenumber!<cr>
 
 " Enter automatically into the files directory
-" autocmd BufEnter * silent! lcd %:p:h
+autocmd BufEnter * silent! lcd %:p:h
 " }}}
 
 
