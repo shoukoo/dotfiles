@@ -118,6 +118,7 @@ zstyle ':completion:*' list-dirs-first true
 # ===================
 #    KEY BINDINGS
 # ===================
+bindkey '^r' history-incremental-search-backward
 bindkey "^a" beginning-of-line
 bindkey "^e" end-of-line
 #
@@ -205,14 +206,7 @@ if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
 
- # zsh-histdb https://github.com/larkery/zsh-histdb
- HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
- source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
- autoload -Uz add-zsh-hook
- source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
- bindkey '^r' _histdb-isearch
-
-
+# switch to different go
 function switchgo() {
   version=$1
   if [ -z $version ]; then
