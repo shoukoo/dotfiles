@@ -333,7 +333,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " FZF {{{
 let g:fzf_command_prefix = 'Fzf'
-let g:fzf_layout = { 'down': '~20%' }
+" let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 " search
 nmap <C-p> :FzfHistory<cr>

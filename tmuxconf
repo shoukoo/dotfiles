@@ -1,89 +1,26 @@
-# C-b is not acceptable -- Vim uses it
 unbind C-b
 set-option -g prefix C-f
 bind-key C-f send-prefix
+set -g status-style 'bg=#333333 fg=#5eacd3'
 
-# toogle last window by hitting again C-f
-bind-key C-f last-window
-
-# re-number windows when one is closed
-set -g renumber-windows on
-
-set-option -g default-shell /bin/zsh
-
-# Start numbering at 1
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
 set -g base-index 1
 
-# Eable mouse
-set -g mouse on
-
-# Source file
-unbind r
-bind r source-file ~/.tmux.conf \; display "Reloaded!"
-
-# Use vim keybindings in copy mode
-setw -g mode-keys vi
-
-# Update default binding of `Enter` and `Space to also use copy-pipe
-unbind -T copy-mode-vi Enter
-unbind -T copy-mode-vi Space
-
-bind-key -T edit-mode-vi Up send-keys -X history-up
-bind-key -T edit-mode-vi Down send-keys -X history-down
-
-# setup 'v' to begin selection as in Vim
-bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
-
-# copy text with `y` in copy mode
-bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel\; run "tmux save -|pbcopy >/dev/null 2>&1"
-#bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel "reattach-to-user-namespace pbcopy"
-
-# copy text with mouse selection without pressing any key
-bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel\; run "tmux save -|pbcopy >/dev/null 2>&1"
-#bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel
-
-# https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-256.conf
-set-option -g status-style bg=colour235,fg=colour136,default
+set-window-option -g mode-keys vi
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+set -g status-left "#[fg=#1d2021,bg=#a89984] #S "
+set -g status-right "#[fg=#3c3836,bg=#3c3836,nobold,nounderscore,noitalics]#[fg=#a89984,bg=#3c3836] %a #[fg=#504945,bg=#3c3836,nobold,nounderscore,noitalics]#[fg=#a89984,bg=#504945] %Y-%m-%d %H:%M "
 
 # set window split
 bind-key v split-window -h -c "#{pane_current_path}"
 bind-key b split-window -c "#{pane_current_path}"
 
-# default window title colors
-set-window-option -g window-status-style fg=colour244,bg=default
-#set-window-option -g window-status-attr dim
+# vim-like pane switching
+bind -r ^ last-window
+bind -r k select-pane -U
+bind -r j select-pane -D
+bind -r h select-pane -L
+bind -r l select-pane -R
 
-# active window title colors
-set-window-option -g window-status-current-style fg=colour166,bg=default
-#set-window-option -g window-status-current-attr bright
-
-# pane border
-set-option -g pane-border-style fg=colour235
-set-option -g pane-active-border-style fg=colour240
-
-# message text
-set-option -g message-style bg=colour235,fg=colour166
-
-# pane number display
-set-option -g display-panes-active-colour colour33 #blue
-set-option -g display-panes-colour colour166 #orange
-# clock
-set-window-option -g clock-mode-colour green #green
-
-set -g status-interval 1
-set -g status-justify centre # center align window list
-set -g status-left-length 20
-set -g status-right-length 140
-set -g status-left '#[fg=green]#H #[fg=black]• #[fg=green,bright]#(uname -r | cut -c 1-6)#[default]'
-set -g status-right '#[fg=green,bg=default,bright]#(tmux-mem-cpu-load) #[fg=red,dim,bg=default]#(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=white,bg=default]%a%l:%M:%S %p#[default] #[fg=blue]%Y-%m-%d'
-
-# List of plugins
-# see this https://github.com/tmux-plugins/tpm to installation
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm to fix 127 error code
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-open'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
+bind -r D neww -t 0 -c "#{pane_current_path}" "vim '$HOME/Library/Mobile Documents/com~apple~CloudDocs/todo.todo'"
