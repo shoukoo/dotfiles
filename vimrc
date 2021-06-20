@@ -219,7 +219,7 @@ endif
 nnoremap <leader>z :set relativenumber!<cr>
 
 " Enter automatically into the files directory
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 " }}}
 
 
