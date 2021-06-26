@@ -19,14 +19,11 @@ Plug 'tpope/vim-surround'
 Plug 'nanotech/jellybeans.vim'
 Plug 'jjo/vim-cue'
 
-Plug 'leafgarland/typescript-vim' " TypeScript syntax
-Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
-" za to fold/unfold lines
 
-" Settings {{{
 set nocompatible
 filetype off
 filetype plugin indent on
@@ -79,7 +76,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.jsonnet setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.libsonnet setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.tsx setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufNewFile,BufRead *.ts setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.todo setlocal expandtab shiftwidth=2 tabstop=2
 
   autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
@@ -87,13 +84,8 @@ augroup filetypedetect
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType terraform setlocal expandtab shiftwidth=2 tabstop=2
-
-  autocmd FileType vim setlocal foldmethod=marker
 augroup END
-" }}}
 
-
-" Statusline settings {{{
 
 let s:modes = {
       \ 'n': 'NORMAL',
@@ -177,10 +169,6 @@ set statusline+=%#myInfoColor#
 set statusline+=\ %{StatusLineFiletype()}\ %{StatusLinePercent()}\ %l:%v
 set statusline+=\ %*
 
-" }}}
-
-
-" Mapping {{{
 
 " This comes first, because we have mappings that depend on leader
 " With a map leader it's possible to do extra key combinations
@@ -220,14 +208,22 @@ nnoremap <leader>z :set relativenumber!<cr>
 
 " Enter automatically into the files directory
 "autocmd BufEnter * silent! lcd %:p:h
-" }}}
 
 
 " ##################
 " -- Plugins
 " ##################
 
-" vim-go {{{
+" ==================== coc.vim ====================
+augroup typscript
+  autocmd!
+  autocmd FileType typescript,json nmap <silent> <leader>d <Plug>(coc-definition)
+  autocmd FileType typescript,json nmap <silent> <leader>t <Plug>(coc-type-definition)
+  autocmd FileType typescript,json nmap <silent> <leader>r <Plug>(coc-references)
+augroup END
+
+
+" ==================== vim-go ====================
 let g:go_fmt_command = "goimports"
 let g:go_def_mode='gopls'
 let g:go_debug_windows = {
@@ -303,23 +299,11 @@ augroup go
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
 augroup END
-" }}}
 
 
-" Nerdtree {{{
-" For toggling
-noremap <Leader>n :NERDTreeToggle<cr>
-noremap <Leader>f :NERDTreeFind<cr>
-let NERDTreeShowHidden=1
-" }}}
-
-
-" vim-json {{{
 let g:vim_json_syntax_conceal = 0
-" }}}
 
 
-" Completetion + snippet {{{
 " ==================== Completion + Snippet ====================
 " Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
 " pressing tab. I like this better than autocompletion, but it's still fast.
@@ -328,10 +312,8 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" }}}
 
-
-" FZF {{{
+" ====================  FZF ====================
 let g:fzf_command_prefix = 'Fzf'
 " let g:fzf_layout = { 'down': '~20%' }
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
@@ -363,14 +345,7 @@ let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-i': 'split',
       \ 'ctrl-s': 'vsplit' }
-" }}}
 
 
-" vim-terraform {{{
+" ====================  Terraform ====================
 autocmd BufWritePost *.tf !terraform fmt
-" }}}
-
-
-" dhall {{{
-autocmd BufWritePre *.dhall :silent :%!dhall format
-"! }}}

@@ -6,6 +6,7 @@ brew-list:
 
 
 sync:
+	mkdir -p ~/Code/shoukoo
 	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/nvim
 
