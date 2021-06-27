@@ -226,3 +226,14 @@ function switchgo() {
   ln -sf "$go_bin_path" "$GOBIN/go"
   echo "Switched to ${go_bin_path}"
 }
+
+
+# age
+function agee {
+  age -R ~/.ssh/age.pub $1 > "$1.age"
+}
+
+function aged {
+  age -d -i ~/.ssh/age $1 > "$1.age"
+}
+
