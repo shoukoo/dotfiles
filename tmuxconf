@@ -23,4 +23,5 @@ bind -r j select-pane -D
 bind -r h select-pane -L
 bind -r l select-pane -R
 
-bind -r D neww -t 0 -c "#{pane_current_path}" "vim '$HOME/Library/Mobile Documents/com~apple~CloudDocs/todo.todo'"
+# Open icloud
+bind -r D run-shell "~/bin/ts '$HOME/Library/Mobile Documents/com~apple~CloudDocs/'"
