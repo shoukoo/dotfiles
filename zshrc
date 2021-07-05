@@ -171,8 +171,14 @@ function switchgo() {
   echo "Switched to ${go_bin_path}"
 }
 
-# https://github.com/99designs/aws-vault
-awsv() { aws-vault exec "$@" --no-session -- zsh;}
+function fzfcd() {
+  items=`find ~/Code/zendesk -maxdepth 1 -mindepth 1 -type d`
+  items+=`find ~/Code/shoukoo -maxdepth 1 -mindepth 1 -type d`
+  items+=("$HOME/shoukoo")
+  items+=("$HOME/zendesk")
+  selected=`echo "$items" | fzf`
+  cd $selected
+}
 
 # ===================
 #    THIRD PARTY
@@ -185,13 +191,6 @@ eval "$(direnv hook zsh)"
 # powerline-go
 function powerline_precmd() {
     PS1="$($GOPATH/bin/powerline-go -modules="aws,kube,venv,ssh,cwd,perms,git,exit,root" -error $? -jobs ${${(%):%j}:-0})"
-
-    # Uncomment the following line to automatically clear errors after showing
-    # them once. This not only clears the error for powerline-go, but also for
-    # everything else you run in that shell. Don't enable this if you're not
-    # sure this is what you want.
-
-    #set "?"
 }
 
 function install_powerline_precmd() {
@@ -206,27 +205,6 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
-
-# switch to different go
-function switchgo() {
-  version=$1
-  if [ -z $version ]; then
-    echo "Usage: switchgo [version]"
-    return
-  fi
-
-  if ! command -v "go$version" > /dev/null 2>&1; then
-    echo "version does not exist, download with: "
-    echo "  go get golang.org/dl/go${version}"
-    echo "  ${version} download"
-    return
-  fi
-
-  go_bin_path=$(command -v "go$version")
-  ln -sf "$go_bin_path" "$GOBIN/go"
-  echo "Switched to ${go_bin_path}"
-}
-
 
 # age
 function agee {
