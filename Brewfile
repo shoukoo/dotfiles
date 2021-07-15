@@ -48,6 +48,7 @@ brew "mysql"
 brew "node", link: false
 brew "node@14", link: true
 brew "rbenv"
+brew "ripgrep"
 brew "ruby"
 brew "shellcheck"
 brew "stern"

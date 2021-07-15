@@ -15,6 +15,7 @@ alias t="tig status"
 alias tigs="tig status" #old habits don't die
 alias d='git diff'
 alias vi='vim'
+alias vim='nvim'
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
 
 case `uname` in

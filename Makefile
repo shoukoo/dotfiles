@@ -14,7 +14,7 @@ sync:
 	go get -u github.com/justjanne/powerline-go
 
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
-	[ -f ~/.config/nvim/init.vim ] || ln -s $(PWD)/vimrc ~/.config/nvim/init.vim
+	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	[ -f ~/.bashrc ] || ln -s $(PWD)/bashrc ~/.bashrc
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
@@ -29,6 +29,7 @@ sync:
 clean:
 	rm -f ~/.vimrc
 	rm -f ~/.config/nvim/init.vim
+	rm -f ~/.config/nvim/init.lua
 	rm -f ~/.config/alacritty/alacritty.yml
 	rm -f ~/.bashrc
 	rm -f ~/.bash_profile
