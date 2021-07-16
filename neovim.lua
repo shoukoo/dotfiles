@@ -1,13 +1,15 @@
 local use = require('packer').use
-require('packer').startup( function()
+require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  use 'nvim-treesitter/nvim-treesitter'   -- Additional textobjects for treesitter
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'itchyny/lightline.vim' -- Fancier statusline
+  use 'tpope/vim-fugitive' -- Git suff
+  use 'nvim-treesitter/nvim-treesitter' -- Highlighting syntax
+  use 'neovim/nvim-lspconfig' -- Language Server Protocal
+  use 'itchyny/lightline.vim' -- Vim status bar
+  use 'hrsh7th/nvim-compe' -- Autocompletion plugin
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
   }
 end)
 
@@ -18,7 +20,7 @@ vim.wo.number = true
 -- Turn off swapfile
 vim.o.swapfile = false
 -- Share the systemclipboard
-vim.o.clipboard = vim.o.clipboard .. "unnamedplus"
+vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
 -- Save undo history
 vim.g.undofile = true
 -- Ignore cases
@@ -26,24 +28,38 @@ vim.g.ignorecase = true
 -- Remap leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+--Enable break indent
+vim.o.breakindent = true
 --Set statusbar
 vim.g.lightline = {
   active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
   component_function = { gitbranch = 'fugitive#head' },
 }
 
+-- Highlight on yank
+vim.api.nvim_exec(
+  [[
+  augroup FiletypeDetect
+    autocmd FileType lua setlocal expandtab shiftwidth=2 tabstop=2
+  augroup end
+]],
+  false
+)
+
 ---------------------------------------------------------------------
 -- LSP Clients
 ---------------------------------------------------------------------
-local nvim_lsp = require('lspconfig')
+local nvim_lsp = require 'lspconfig'
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_keymap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -67,7 +83,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "gopls" }
+local servers = { 'gopls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
@@ -75,7 +91,9 @@ end
 -- Follow this instruction here to install
 -- Lua language server https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local sumneko_root_path = vim.fn.getenv("HOME").."/Code/shoukoo/lua-language-server"
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local sumneko_root_path = vim.fn.getenv 'HOME' .. '/Code/shoukoo/lua-language-server'
 local sumneko_binary = sumneko_root_path .. '/bin/macOS/lua-language-server'
 
 -- Make runtime files discoverable to the server
@@ -120,7 +138,7 @@ require('nvim-treesitter.configs').setup {
   },
   indent = {
     enable = true,
-  }
+  },
 }
 
 ---------------------------------------------------------------------
@@ -132,3 +150,72 @@ vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.bu
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 -- Call RG to grep files
 vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
+
+
+---------------------------------------------------------------------
+-- Comp
+---------------------------------------------------------------------
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noinsert'
+
+-- Compe setup
+require('compe').setup {
+  source = {
+    path = true,
+    nvim_lsp = true,
+    luasnip = true,
+    buffer = false,
+    calc = false,
+    nvim_lua = false,
+    vsnip = false,
+    ultisnips = false,
+  },
+}
+
+local luasnip = require 'luasnip'
+
+-- Utility functions for compe and luasnip
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+  local col = vim.fn.col '.' - 1
+  if col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' then
+    return true
+  else
+    return false
+  end
+end
+
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t '<C-n>'
+  elseif luasnip.expand_or_jumpable() then
+    return t '<Plug>luasnip-expand-or-jump'
+  elseif check_back_space() then
+    return t '<Tab>'
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t '<C-p>'
+  elseif luasnip.jumpable(-1) then
+    return t '<Plug>luasnip-jump-prev'
+  else
+    return t '<S-Tab>'
+  end
+end
+
+-- Map tab to the above tab complete functiones
+vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
+vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+
+-- Map compe confirm and complete functions
+vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
+vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { expr = true })
