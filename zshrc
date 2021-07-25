@@ -35,6 +35,7 @@ alias co='git checkout master'
 alias po='git pull origin $(git rev-parse --abbrev-ref HEAD)'
 alias b='git branch'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
+alias vimrc='vim ~/.config/nvim/init.lua'
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
@@ -172,7 +173,7 @@ function switchgo() {
   echo "Switched to ${go_bin_path}"
 }
 
-function fzfcd() {
+function fcd() {
   items=`find ~/Code/zendesk -maxdepth 1 -mindepth 1 -type d`
   items+=`find ~/Code/shoukoo -maxdepth 1 -mindepth 1 -type d`
   items+=("$HOME/shoukoo")
