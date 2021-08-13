@@ -10,7 +10,7 @@ require("packer").startup(function()
 	use("L3MON4D3/LuaSnip")
 	use("kristijanhusak/orgmode.nvim")
 	use("shoukoo/stylua.nvim")
-	use("shoukoo/mei.nvim")
+	use({"shoukoo/mei.nvim"})
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
@@ -50,6 +50,9 @@ vim.g.ignorecase = true
 -- Remap leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+--Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
 --Enable break indent
 vim.o.breakindent = true
 -- terminal mode

@@ -21,7 +21,7 @@ sync:
 	[ -f ~/.bash_profile ] || ln -s $(PWD)/bashprofile ~/.bash_profile
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
-	[ -f ~/bin/ts ] || ln -s $(PWD)/ts ~/bin/ts
+	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
 
 	# don't show last login message
 	touch ~/.hushlogin
@@ -36,6 +36,6 @@ clean:
 	rm -f ~/.tmux.conf
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.zshrc
-	rm -f ~/bin/ts
+	rm -f ~/bin/fts
 
 .PHONY: all clean sync build run kill
