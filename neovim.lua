@@ -8,6 +8,7 @@ require("packer").startup(function()
 	use("itchyny/lightline.vim")
 	use("hrsh7th/nvim-compe")
 	use("L3MON4D3/LuaSnip")
+	use("kristijanhusak/orgmode.nvim")
 	use("shoukoo/stylua.nvim")
 	use("shoukoo/mei.nvim")
 	use({
@@ -20,6 +21,16 @@ end)
 require("stylua").startup()
 -- Color scheme
 require("mei")
+-- Org mode
+local Orgmod_path = [[~/Library/Mobile\ Documents/com~apple~CloudDocs/vim/orgmode/]]
+require("orgmode").setup({
+	org_agenda_files = { Orgmod_path .. "*" },
+	org_default_notes_file = Orgmod_path .. "default.org",
+	org_agenda_templates = {
+		t = { description = "default", template = "* TODO %?\n  %u" },
+		n = { description = "neovim", template = "* TODO %?\n %u", target = Orgmod_path .. "nvim.org" },
+	},
+})
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -42,7 +53,7 @@ vim.g.maplocalleader = " "
 --Enable break indent
 vim.o.breakindent = true
 -- terminal mode
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { })
+vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], {})
 --Set statusbar
 vim.g.lightline = {
 	active = { left = { { "mode", "paste" }, { "gitbranch", "readonly", "filename", "modified" } } },
@@ -130,7 +141,6 @@ nvim_lsp.sumneko_lua.setup({
 			runtime = {
 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 				version = "LuaJIT",
-				-- Setup your lua path
 				path = runtime_path,
 			},
 			diagnostics = {
@@ -139,7 +149,10 @@ nvim_lsp.sumneko_lua.setup({
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+				},
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
@@ -198,9 +211,9 @@ require("compe").setup({
 		path = true,
 		nvim_lsp = true,
 		luasnip = true,
+		orgmode = true,
 		buffer = false,
 		calc = false,
-		nvim_lua = true,
 		vsnip = false,
 		ultisnips = false,
 	},
@@ -253,5 +266,3 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true 
 -- Map compe confirm and complete functions
 vim.api.nvim_set_keymap("i", "<cr>", 'compe#confirm("<cr>")', { expr = true })
 vim.api.nvim_set_keymap("i", "<c-space>", "compe#complete()", { expr = true })
-
-
