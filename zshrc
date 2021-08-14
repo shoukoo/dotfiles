@@ -217,4 +217,3 @@ function agee {
 function aged {
   age -d -i ~/.ssh/age $1 > "$1.age"
 }
-
