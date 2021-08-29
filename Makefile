@@ -22,6 +22,7 @@ sync:
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
 	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
+	[ -d ~/.config/nvim/lua ] || ln -s $(PWD)/lua ~/.config/nvim/lua
 
 	# don't show last login message
 	touch ~/.hushlogin
@@ -37,5 +38,6 @@ clean:
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.zshrc
 	rm -f ~/bin/fts
+	rm -rf ~/.config/nvim/lua
 
 .PHONY: all clean sync build run kill
