@@ -11,6 +11,8 @@ else
 fi
 
 dirname=$( basename "$selected" )
+#Replace '.' with underscore
+dirname=${dirname/\./_}
 
 tmux switch-client -t $dirname
 if [[ $? -eq 0 ]]; then

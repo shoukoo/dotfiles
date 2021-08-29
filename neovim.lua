@@ -10,7 +10,8 @@ require('packer').startup(function()
   use('L3MON4D3/LuaSnip')
   use('kristijanhusak/orgmode.nvim')
   use('shoukoo/stylua.nvim')
-  use({ 'shoukoo/mei.nvim' })
+  use('shoukoo/mei.nvim')
+  use('shoukoo/commentary.nvim')
   use({
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
@@ -59,7 +60,6 @@ vim.api.nvim_exec(
   [[
   augroup FiletypeDetect
     autocmd FileType lua setlocal expandtab shiftwidth=2 tabstop=2
-    autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
   augroup end
 ]],
   false
@@ -166,9 +166,6 @@ require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true, -- false will disable the whole extension
   },
-  indent = {
-    enable = true,
-  },
 })
 
 ---------------------------------------------------------------------
@@ -267,7 +264,7 @@ require('orgmode').setup({
 ---------------------------------------------------------------------
 
 -- Printout values
-local dump = function(tbl)
+_G.Dump = function(tbl)
   if type(tbl) == 'table' then
     local s = '{ '
     for k, v in pairs(tbl) do
@@ -285,7 +282,6 @@ end
 -- custom handler to call both goimports + gofmt.
 -- vim.lsp.buf.formatting doesn't trigger goimports
 Gopls = function(timeoutms)
-  print('callong')
   local context = { source = { organizeImports = true } }
   local params = vim.lsp.util.make_range_params()
   params.context = context
