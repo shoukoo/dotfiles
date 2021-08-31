@@ -1,8 +1,16 @@
+local install_path = "~/.local/share/nvim/site/pack/packer/start/packer.nvim"
+
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  echo "I'm here"
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+end
+
+
 local use = require('packer').use
 require('packer').startup(function()
   use('wbthomason/packer.nvim')
   use('tpope/vim-fugitive')
-  use('nvim-treesitter/nvim-treesitter')
+  use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
   use('nvim-treesitter/playground')
   use('neovim/nvim-lspconfig')
   use('itchyny/lightline.vim')
@@ -116,8 +124,16 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
 
--- Follow this instruction here to install
--- Lua language server https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
+-- Instruction: https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
+-- brew install ninja
+-- git clone https://github.com/sumneko/lua-language-server.git
+-- cd lua-language-server
+-- git submodule update --init --recursive
+-- cd 3rd/luamake
+-- ./compile/install.sh
+-- cd ../..
+-- ./3rd/luamake/luamake rebuild
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
