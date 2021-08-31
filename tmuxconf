@@ -24,6 +24,3 @@ bind -r k select-pane -U
 bind -r j select-pane -D
 bind -r h select-pane -L
 bind -r l select-pane -R
-
-# Open icloud
-bind -r D run-shell "~/bin/ts '$HOME/Library/Mobile Documents/com~apple~CloudDocs/'"
