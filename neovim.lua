@@ -226,6 +226,7 @@ cmp.setup({
         luasnip = '[LuaSnip]',
         nvim_lua = '[Lua]',
         latex_symbols = '[Latex]',
+        orgmode = '[ORG]'
       })[entry.source.name]
       return vim_item
     end,
