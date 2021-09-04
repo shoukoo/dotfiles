@@ -91,7 +91,6 @@ local on_attach = function(lsp)
 
     -- Mappings.
     local opts = { noremap = true, silent = true }
-
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     if lsp == 'sumneko_lua' then
       buf_set_keymap('n', 'gf', [[<Cmd>lua require"stylua".format_file()<CR>]], opts)
@@ -205,8 +204,8 @@ local cmp = require('cmp')
 cmp.setup({
 
   snippet = {
-    expand = function()
-      error('snippet engine is not configured.')
+    expand = function(args)
+      vim.fn['vsnip#anonymous'](args.body)
     end,
   },
 
@@ -226,7 +225,7 @@ cmp.setup({
         luasnip = '[LuaSnip]',
         nvim_lua = '[Lua]',
         latex_symbols = '[Latex]',
-        orgmode = '[ORG]'
+        orgmode = '[ORG]',
       })[entry.source.name]
       return vim_item
     end,
