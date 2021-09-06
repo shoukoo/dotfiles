@@ -16,6 +16,7 @@ require('packer').startup(function()
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/vim-vsnip',
+      'hrsh7th/cmp-vsnip',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
@@ -200,6 +201,10 @@ vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin
 -- Cmp
 ---------------------------------------------------------
 local cmp = require('cmp')
+local check_back_space = function()
+  local col = vim.fn.col('.') - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
+end
 
 cmp.setup({
 
@@ -210,7 +215,18 @@ cmp.setup({
   },
 
   mapping = {
-    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+    ['<Tab>'] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      elseif check_back_space() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, true, true), 'n')
+      elseif vim.fn['vsnip#available']() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true), '')
+      else
+        fallback()
+      end
+    end,
+    -- ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
@@ -220,22 +236,20 @@ cmp.setup({
   formatting = {
     format = function(entry, vim_item)
       vim_item.menu = ({
-        buffer = '[Buffer]',
         nvim_lsp = '[LSP]',
-        luasnip = '[LuaSnip]',
         nvim_lua = '[Lua]',
-        latex_symbols = '[Latex]',
         orgmode = '[ORG]',
+        vsnip = '[SNIP]',
       })[entry.source.name]
       return vim_item
     end,
   },
 
   sources = {
-    { name = 'orgmode' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-    { name = 'luasnip' },
+    { name = 'orgmode' },
+    { name = 'vsnip' },
   },
 })
 
