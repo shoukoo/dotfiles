@@ -23,6 +23,7 @@ sync:
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
 	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
 	[ -d ~/.config/nvim/lua ] || ln -s $(PWD)/lua ~/.config/nvim/lua
+	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
 
 	# don't show last login message
 	touch ~/.hushlogin
@@ -39,5 +40,6 @@ clean:
 	rm -f ~/.zshrc
 	rm -f ~/bin/fts
 	rm -rf ~/.config/nvim/lua
+	rm -rf ~/.vsnip
 
 .PHONY: all clean sync build run kill
