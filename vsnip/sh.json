@@ -21,11 +21,6 @@
     "body": "set -euo pipefail",
     "description": "Set useful commands."
   },
-  "var": {
-    "prefix": "var",
-    "body": "FOO=\"${VARIABLE:-default}\"",
-    "description": "Set variable with a default value."
-  },
   "echo": {
     "prefix": "echo",
     "body": "echo \"${0:message}\"",
