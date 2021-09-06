@@ -16,9 +16,7 @@ sync:
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
-	[ -f ~/.bashrc ] || ln -s $(PWD)/bashrc ~/.bashrc
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
-	[ -f ~/.bash_profile ] || ln -s $(PWD)/bashprofile ~/.bash_profile
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
 	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
@@ -33,8 +31,6 @@ clean:
 	rm -f ~/.config/nvim/init.vim
 	rm -f ~/.config/nvim/init.lua
 	rm -f ~/.config/alacritty/alacritty.yml
-	rm -f ~/.bashrc
-	rm -f ~/.bash_profile
 	rm -f ~/.tmux.conf
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.zshrc
