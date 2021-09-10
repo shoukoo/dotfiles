@@ -8,6 +8,8 @@ local use = require('packer').use
 require('packer').startup(function()
   use('wbthomason/packer.nvim')
   use('tpope/vim-fugitive')
+  use('junegunn/fzf.vim')
+  use({'junegunn/fzf', run = function() vim.fn['fzf#install']() end})
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
   use('nvim-treesitter/playground')
   use('neovim/nvim-lspconfig')
@@ -26,10 +28,6 @@ require('packer').startup(function()
   use('shoukoo/stylua.nvim')
   use('shoukoo/mei.nvim')
   use('shoukoo/commentary.nvim')
-  use({
-    'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
-  })
 end)
 
 -- Color scheme
@@ -188,14 +186,13 @@ require('nvim-treesitter.configs').setup({
 })
 
 ---------------------------------------------------------------------
--- Telescope
+-- Fzf
 ---------------------------------------------------------------------
--- Recent visited files
-vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
--- Find files
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
--- Call RG to grep files
-vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>History<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>Files<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>g', [[<cmd>GFiles<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>c', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>b', [[<cmd>Buffers<CR>]], { noremap = true, silent = true })
 
 ---------------------------------------------------------------------
 -- Cmp
