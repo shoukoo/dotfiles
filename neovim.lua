@@ -189,10 +189,10 @@ require('nvim-treesitter.configs').setup({
 -- Fzf
 ---------------------------------------------------------------------
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>History<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>Files<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>g', [[<cmd>GFiles<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>c', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>b', [[<cmd>Buffers<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>Files<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>Rg<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true, silent = true })
 
 ---------------------------------------------------------------------
 -- Cmp
