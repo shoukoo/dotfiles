@@ -9,7 +9,12 @@ require('packer').startup(function()
   use('wbthomason/packer.nvim')
   use('tpope/vim-fugitive')
   use('junegunn/fzf.vim')
-  use({'junegunn/fzf', run = function() vim.fn['fzf#install']() end})
+  use({
+    'junegunn/fzf',
+    run = function()
+      vim.fn['fzf#install']()
+    end,
+  })
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
   use('nvim-treesitter/playground')
   use('neovim/nvim-lspconfig')
@@ -237,6 +242,7 @@ cmp.setup({
         nvim_lua = '[Lua]',
         orgmode = '[ORG]',
         vsnip = '[SNIP]',
+        buffer = '[BUFFER]',
       })[entry.source.name]
       return vim_item
     end,
@@ -247,6 +253,7 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'orgmode' },
     { name = 'vsnip' },
+    { name = 'buffer' },
   },
 })
 
