@@ -30,6 +30,7 @@ require('packer').startup(function()
     },
   })
   use('kristijanhusak/orgmode.nvim')
+  use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
   use('shoukoo/mei.nvim')
   use('shoukoo/commentary.nvim')
@@ -78,6 +79,7 @@ vim.api.nvim_exec(
     autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescriptreact setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
   augroup end
 ]],
   false
@@ -128,7 +130,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tsserver', 'terraformls' }
+local servers = { 'gopls', 'tsserver', 'terraformls', 'pylsp' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end

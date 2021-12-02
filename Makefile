@@ -12,6 +12,7 @@ sync:
 
 	# Go stuff
 	go get -u github.com/justjanne/powerline-go
+	go get -u github.com/jesseduffield/lazygit
 
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua

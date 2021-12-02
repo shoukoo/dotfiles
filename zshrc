@@ -14,10 +14,11 @@ alias ..='cd ..'
 alias t="tig status"
 alias tigs="tig status" #old habits don't die
 alias d='git diff'
-alias vi='vim'
+alias vi='nvim'
 alias vim='nvim'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
+alias lg='lazygit'
 
 case `uname` in
   Darwin)
