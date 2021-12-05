@@ -29,7 +29,7 @@ require('packer').startup(function()
       'hrsh7th/cmp-nvim-lua',
     },
   })
-  use({ 'nvim-orgmode/orgmode.nvim', commit = '9cf968e5d5651c33cdc9de18ca7f02dc502502e7' })
+  use({ 'nvim-orgmode/orgmode.nvim', commit = '879a8b2aa20f43d482ce86c2b78cdf4e650c6084' })
   use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
   use('shoukoo/mei.nvim')
