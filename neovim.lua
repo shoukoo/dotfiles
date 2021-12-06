@@ -29,7 +29,9 @@ require('packer').startup(function()
       'hrsh7th/cmp-nvim-lua',
     },
   })
-  use({ 'nvim-orgmode/orgmode.nvim', commit = '879a8b2aa20f43d482ce86c2b78cdf4e650c6084' })
+  -- Anything byond this commit will break template function
+  -- https://github.com/nvim-orgmode/orgmode/commit/a94f7b8169ed9cbb8ca0d1ef9701fdcd2f4c4bbc
+  use({ 'nvim-orgmode/orgmode.nvim', commit = '7188c2fadefdd9271ff4542cf104be0b785e93f6' })
   use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
   use('shoukoo/mei.nvim')
