@@ -272,8 +272,9 @@ require('orgmode').setup({
   org_agenda_files = { Orgmod_path .. '*' },
   org_default_notes_file = Orgmod_path .. 'default.org',
   org_agenda_templates = {
-    t = { description = 'default', template = '* TODO %?\n  %u' },
-    n = { description = 'neovim', template = '* TODO %?\n %u', target = Orgmod_path .. 'nvim.org' },
+    d = { description = 'default', template = '* TODO %? :personal:\n  %u' },
+    n = { description = 'neovim', template = '* TODO %? :neovim:\n %u', target = Orgmod_path .. 'nvim.org' },
+    z = { description = 'zendesk', template = '* TODO %? :zendesk:\n %u', target = Orgmod_path .. 'zendesk.org' },
   },
 })
 
