@@ -7,7 +7,9 @@ end
 local use = require('packer').use
 require('packer').startup(function()
   use('wbthomason/packer.nvim')
+  use('google/vim-jsonnet')
   use('tpope/vim-fugitive')
+  use('tpope/vim-rhubarb')
   use('junegunn/fzf.vim')
   use({
     'junegunn/fzf',
