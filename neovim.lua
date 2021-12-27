@@ -31,7 +31,7 @@ require('packer').startup(function()
       'hrsh7th/cmp-nvim-lua',
     },
   })
-  -- Anything byond this commit will break template function
+  -- Anything beyond this commit will break the template function
   -- https://github.com/nvim-orgmode/orgmode/commit/a94f7b8169ed9cbb8ca0d1ef9701fdcd2f4c4bbc
   use({ 'nvim-orgmode/orgmode.nvim', commit = '7188c2fadefdd9271ff4542cf104be0b785e93f6' })
   use('tpope/vim-surround')
@@ -132,6 +132,7 @@ local on_attach = function(lsp)
   end
 end
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { 'gopls', 'tsserver', 'terraformls', 'pylsp' }
