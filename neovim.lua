@@ -20,7 +20,6 @@ require('packer').startup(function()
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
   use('nvim-treesitter/playground')
   use('neovim/nvim-lspconfig')
-  use('itchyny/lightline.vim')
   use({
     'hrsh7th/nvim-cmp',
     requires = {
@@ -34,6 +33,7 @@ require('packer').startup(function()
   -- Anything beyond this commit will break the template function
   -- https://github.com/nvim-orgmode/orgmode/commit/a94f7b8169ed9cbb8ca0d1ef9701fdcd2f4c4bbc
   use({ 'nvim-orgmode/orgmode.nvim', commit = '7188c2fadefdd9271ff4542cf104be0b785e93f6' })
+  use('itchyny/lightline.vim')
   use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
   use('shoukoo/mei.nvim')
@@ -51,7 +51,7 @@ vim.wo.relativenumber = true
 -- Turn off swapfile
 vim.o.swapfile = false
 -- Share the systemclipboard
-vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
+vim.opt.clipboard:prepend {"unnamedplus"}
 -- Save undo history
 vim.cmd([[set undofile]])
 -- Set split
@@ -62,18 +62,17 @@ vim.g.ignorecase = true
 -- Remap leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
---Case insensitive searching UNLESS /C or capital in search
+-- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
---Enable break indent
+-- Enable break indent
 vim.o.breakindent = true
 -- terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], {})
---Set statusbar
-vim.g.lightline = {
-  active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-  component_function = { gitbranch = 'fugitive#head' },
-}
+-- Custom keys
+vim.api.nvim_set_keymap('n', '<leader>sv', '<cmd>source $MYVIMRC<cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ev', '<cmd>vsplit $MYVIMRC<cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>sp', '<cmd>so $MYVIMRC<cr><cmd>PackerInstall<cr>', {noremap=true})
 
 -- Filetype indentation
 vim.api.nvim_exec(
@@ -88,6 +87,15 @@ vim.api.nvim_exec(
 ]],
   false
 )
+
+---------------------------------------------------------------------
+-- Lightline 
+---------------------------------------------------------------------
+vim.g.lightline = {
+  active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
+  colorscheme= 'solarized',
+  component_function = { gitbranch = 'fugitive#head' },
+}
 
 ---------------------------------------------------------------------
 -- LSP Clients
