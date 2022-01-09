@@ -20,6 +20,7 @@ alias k='kubectl'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
 alias lg='lazygit'
+alias cat='bat'
 
 case `uname` in
   Darwin)
