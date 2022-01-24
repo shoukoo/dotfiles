@@ -16,8 +16,11 @@ alias tigs="tig status" #old habits don't die
 alias d='git diff'
 alias vi='nvim'
 alias vim='nvim'
-alias k='kubectl'
+alias v='nvim'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
+# https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
+alias k=kubectl
+compdef __start_kubectl k
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
 alias lg='lazygit'
 alias cat='bat'
