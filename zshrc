@@ -20,7 +20,6 @@ alias v='nvim'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
 alias k=kubectl
-compdef __start_kubectl k
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
 alias lg='lazygit'
 alias cat='bat'
@@ -188,8 +187,12 @@ function fcd() {
   items+=`find ~/Code/shoukoo -maxdepth 1 -mindepth 1 -type d`
   items+=("$HOME/shoukoo")
   items+=("$HOME/zendesk")
-  selected=`echo "$items" | fzf`
+  selected=`echo "$items" | fzf --height 10`
   cd $selected
+}
+
+function fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height 20 | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
 }
 
 # ===================
