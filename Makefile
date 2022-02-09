@@ -11,11 +11,9 @@ sync:
 	mkdir -p ~/.config/nvim
 
 	# Go stuff
-	go get -u github.com/justjanne/powerline-go
-	go get -u github.com/jesseduffield/lazygit
+	go install github.com/justjanne/powerline-go@latest
+	go install github.com/jesseduffield/lazygit@latest
 
-	# Krew
-	k krew install < krew.txt
 
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
@@ -26,6 +24,9 @@ sync:
 	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
 	[ -d ~/.config/nvim/lua ] || ln -s $(PWD)/lua ~/.config/nvim/lua
 	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
+	
+	# Krew
+	kubectl krew install < krew.txt
 
 	# don't show last login message
 	touch ~/.hushlogin

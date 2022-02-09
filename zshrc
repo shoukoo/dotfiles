@@ -89,7 +89,6 @@ setopt hist_verify
 setopt inc_append_history
 # share command history data
 setopt share_history
-
 # ===================
 #    AUTOCOMPLETION
 # ===================
@@ -200,6 +199,7 @@ function fif() {
   file=$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")
   vim $file
 }
+
 # ===================
 #    THIRD PARTY
 # ===================
