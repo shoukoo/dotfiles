@@ -11,6 +11,7 @@
 # =============
 alias ..='cd ..'
 
+alias k9ss="k9s --as-group=system:masters --as admin"
 alias t="tig status"
 alias tigs="tig status" #old habits don't die
 alias d='git diff'
@@ -18,6 +19,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias v='nvim'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
+alias cl="printf '\33c\e[3J'"
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
 alias k=kubectl
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
@@ -171,7 +173,7 @@ function switchgo() {
 
   if ! command -v "go$version" > /dev/null 2>&1; then
     echo "version does not exist, download with: "
-    echo "  go get golang.org/dl/go${version}"
+    echo "  go install golang.org/dl/go${version}@latest"
     echo "  go${version} download"
     return
   fi

@@ -84,6 +84,7 @@ vim.api.nvim_exec(
     autocmd FileType typescriptreact setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   augroup end
 ]],
   false
