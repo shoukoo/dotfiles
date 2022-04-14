@@ -298,15 +298,22 @@ require('orgmode').setup({
 ---------------------------------------------------------------------
 -- ToggleTerm
 ---------------------------------------------------------------------
+--
+
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
+local term = Terminal:new({ hidden = true, direction = 'float' })
 
 function Lazygit_toggle()
   lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
+function Term_toggle()
+  term:toggle()
+end
 
+vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>lua Term_toggle()<CR>", {noremap = true, silent = true})
 ---------------------------------------------------------------------
 -- Helper functions
 ---------------------------------------------------------------------

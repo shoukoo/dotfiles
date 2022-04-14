@@ -18,6 +18,7 @@ alias d='git diff'
 alias vi='nvim'
 alias vim='nvim'
 alias v='nvim'
+alias find='fd'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 alias cl="printf '\33c\e[3J'"
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
