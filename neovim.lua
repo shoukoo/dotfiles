@@ -30,6 +30,8 @@ require('packer').startup(function()
       'hrsh7th/cmp-nvim-lua',
     },
   })
+  use({ 'akinsho/toggleterm.nvim' })
+
   -- Anything beyond this commit will break the template function
   -- https://github.com/nvim-orgmode/orgmode/commit/a94f7b8169ed9cbb8ca0d1ef9701fdcd2f4c4bbc
   use({ 'nvim-orgmode/orgmode.nvim', commit = '7188c2fadefdd9271ff4542cf104be0b785e93f6' })
@@ -51,7 +53,7 @@ vim.wo.relativenumber = true
 -- Turn off swapfile
 vim.o.swapfile = false
 -- Share the systemclipboard
-vim.opt.clipboard:prepend {"unnamedplus"}
+vim.opt.clipboard:prepend({ 'unnamedplus' })
 -- Save undo history
 vim.cmd([[set undofile]])
 -- Set split
@@ -72,7 +74,7 @@ vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], {})
 -- Custom keys
 vim.api.nvim_set_keymap('n', '<leader>sv', '<cmd>source $MYVIMRC<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>ev', '<cmd>vsplit $MYVIMRC<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sp', '<cmd>so $MYVIMRC<cr><cmd>PackerInstall<cr>', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>sp', '<cmd>so $MYVIMRC<cr><cmd>PackerInstall<cr>', { noremap = true })
 
 -- Filetype indentation
 vim.api.nvim_exec(
@@ -91,11 +93,11 @@ vim.api.nvim_exec(
 )
 
 ---------------------------------------------------------------------
--- Lightline 
+-- Lightline
 ---------------------------------------------------------------------
 vim.g.lightline = {
   active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-  colorscheme= 'solarized',
+  colorscheme = 'solarized',
   component_function = { gitbranch = 'fugitive#head' },
 }
 
@@ -294,24 +296,20 @@ require('orgmode').setup({
 })
 
 ---------------------------------------------------------------------
+-- ToggleTerm
+---------------------------------------------------------------------
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
+
+function Lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
+
+---------------------------------------------------------------------
 -- Helper functions
 ---------------------------------------------------------------------
-
--- Printout values
-_G.Dump = function(tbl)
-  if type(tbl) == 'table' then
-    local s = '{ '
-    for k, v in pairs(tbl) do
-      if type(k) ~= 'number' then
-        k = '"' .. k .. '"'
-      end
-      s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
-    end
-    return s .. '} '
-  else
-    return tostring(tbl)
-  end
-end
 
 -- custom handler to call both goimports + gofmt.
 -- vim.lsp.buf.formatting doesn't trigger goimports
