@@ -292,6 +292,7 @@ require('orgmode').setup({
     d = { description = 'default', template = '* TODO %? :personal:\n  %u' },
     n = { description = 'neovim', template = '* TODO %? :neovim:\n %u', target = Orgmod_path .. 'nvim.org' },
     z = { description = 'zendesk', template = '* TODO %? :zendesk:\n %u', target = Orgmod_path .. 'zendesk.org' },
+    r = { description = 'reading', template = '* TODO %? :reading:\n %u', target = Orgmod_path .. 'reading.org' },
   },
 })
 
@@ -312,7 +313,7 @@ function Term_toggle()
   term:toggle()
 end
 
-vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>lua Term_toggle()<CR>", {noremap = true, silent = true})
 ---------------------------------------------------------------------
 -- Helper functions

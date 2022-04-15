@@ -185,8 +185,8 @@ function switchgo() {
 }
 
 function fcd() {
-  items=`find ~/Code/zendesk -maxdepth 1 -mindepth 1 -type d`
-  items+=`find ~/Code/shoukoo -maxdepth 1 -mindepth 1 -type d`
+  items=`find . ~/Code/zendesk --max-depth 1 --min-depth 1 --type directory`
+  items+=`find . ~/Code/shoukoo --max-depth 1 --min-depth 1 --type directory`
   items+=("$HOME/shoukoo")
   items+=("$HOME/zendesk")
   selected=`echo "$items" | fzf --height 10`
