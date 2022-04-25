@@ -299,11 +299,10 @@ require('orgmode').setup({
 ---------------------------------------------------------------------
 -- ToggleTerm
 ---------------------------------------------------------------------
---
-
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
 local term = Terminal:new({ hidden = true, direction = 'float' })
+local taskwarrior = Terminal:new({ cmd = 'taskwarrior-tui', hidden = true, direction = 'float' })
 
 function Lazygit_toggle()
   lazygit:toggle()
@@ -313,8 +312,12 @@ function Term_toggle()
   term:toggle()
 end
 
+function Task_toggle()
+  taskwarrior:toggle()
+end
+
 vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>lua Term_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>lua Task_toggle()<CR>", {noremap = true, silent = true})
 ---------------------------------------------------------------------
 -- Helper functions
 ---------------------------------------------------------------------
@@ -337,3 +340,18 @@ Gopls = function(timeoutms)
   end
   vim.lsp.buf.formatting_sync()
 end
+
+---------------------------------------------------------------------
+-- Main
+---------------------------------------------------------------------
+if vim.api.nvim_eval('argc()') == 0 then
+vim.api.nvim_exec(
+  [[
+  augroup enter
+    autocmd VimEnter * lua Task_toggle()
+  augroup end
+]],
+  false
+)
+end
+
