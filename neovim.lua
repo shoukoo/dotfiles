@@ -11,6 +11,7 @@ require('packer').startup(function()
   use('tpope/vim-fugitive')
   use('tpope/vim-rhubarb')
   use('junegunn/fzf.vim')
+  use('sebdah/vim-delve')
   use({
     'junegunn/fzf',
     run = function()
@@ -300,7 +301,8 @@ require('orgmode').setup({
 -- ToggleTerm
 ---------------------------------------------------------------------
 local Terminal = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
+local lazygit = Terminal:new({ cmd = 'CONFIG_DIR=~/.config/lazygit lazygit', hidden = true, direction = 'float' })
+-- not use
 local term = Terminal:new({ hidden = true, direction = 'float' })
 local taskwarrior = Terminal:new({ cmd = 'taskwarrior-tui', hidden = true, direction = 'float' })
 

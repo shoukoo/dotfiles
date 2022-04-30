@@ -9,6 +9,7 @@ sync:
 	mkdir -p ~/Code/shoukoo
 	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/nvim
+	mkdir -p ~/.config/lazygit
 
 	# Go stuff
 	go install github.com/justjanne/powerline-go@latest
@@ -25,6 +26,7 @@ sync:
 	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
 	[ -d ~/.config/nvim/lua ] || ln -s $(PWD)/lua ~/.config/nvim/lua
 	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
+	[ -f ~/.lazygit.conf ] || ln -s $(PWD)/lazygit.conf ~/.config/lazygit/config.yml
 	
 	# Krew
 	kubectl krew install < krew.txt
@@ -44,5 +46,6 @@ clean:
 	rm -f ~/bin/fts
 	rm -rf ~/.config/nvim/lua
 	rm -rf ~/.vsnip
+	rm -rf ~/.config/lazygit/config.yml
 
 .PHONY: all clean sync build run kill

@@ -24,8 +24,14 @@ alias cl="printf '\33c\e[3J'"
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
 alias k=kubectl
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
-alias lg='lazygit'
+alias lg='CONFIG_DIR=~/.config/lazygit lazygit'
 alias cat='bat'
+alias sq='git rebase -i $(git merge-base $(git rev-parse --abbrev-ref HEAD) master)'
+alias co='git checkout master'
+alias po='git pull origin $(git rev-parse --abbrev-ref HEAD)'
+alias b='git branch'
+alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
+alias vimrc='vim ~/.config/nvim/init.lua'
 function ks () {
   kubectl --as admin --as-group system:masters "${@}"
 }
@@ -41,13 +47,6 @@ case `uname` in
     alias ls='ls --color=auto'
   ;;
 esac
-
-alias sq='git rebase -i $(git merge-base $(git rev-parse --abbrev-ref HEAD) master)'
-alias co='git checkout master'
-alias po='git pull origin $(git rev-parse --abbrev-ref HEAD)'
-alias b='git branch'
-alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
-alias vimrc='vim ~/.config/nvim/init.lua'
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
