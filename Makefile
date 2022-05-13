@@ -27,6 +27,7 @@ sync:
 	[ -d ~/.config/nvim/lua ] || ln -s $(PWD)/lua ~/.config/nvim/lua
 	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
 	[ -f ~/.lazygit.conf ] || ln -s $(PWD)/lazygit.conf ~/.config/lazygit/config.yml
+	[ -f ~/.rubocop.yml ] || ln -s $(PWD)/rubocop.yml ~/.rubocop.yml
 	
 	# Krew
 	kubectl krew install < krew.txt
@@ -43,6 +44,7 @@ clean:
 	rm -f ~/.tmux.conf
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.zshrc
+	rm -f ~/.rubocop.yml
 	rm -f ~/bin/fts
 	rm -rf ~/.config/nvim/lua
 	rm -rf ~/.vsnip
