@@ -7,6 +7,8 @@ end
 local use = require('packer').use
 require('packer').startup(function()
   use('wbthomason/packer.nvim')
+  use('luisiacc/gruvbox-baby')
+  use("EdenEast/nightfox.nvim")
   use('google/vim-jsonnet')
   use('tpope/vim-fugitive')
   use('tpope/vim-rhubarb')
@@ -33,18 +35,15 @@ require('packer').startup(function()
   })
   use({ 'akinsho/toggleterm.nvim' })
 
-  -- Anything beyond this commit will break the template function
-  -- https://github.com/nvim-orgmode/orgmode/commit/a94f7b8169ed9cbb8ca0d1ef9701fdcd2f4c4bbc
-  use({ 'nvim-orgmode/orgmode.nvim', commit = '7188c2fadefdd9271ff4542cf104be0b785e93f6' })
   use('itchyny/lightline.vim')
   use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
-  use('shoukoo/mei.nvim')
   use('shoukoo/commentary.nvim')
 end)
 
 -- Color scheme
-require('mei')
+vim.cmd("colorscheme gruvbox-baby")
+
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -283,28 +282,12 @@ cmp.setup({
 })
 
 ---------------------------------------------------------------------
--- Orgmode
----------------------------------------------------------------------
-local Orgmod_path = [[~/Library/Mobile\ Documents/com~apple~CloudDocs/vim/orgmode/]]
-require('orgmode').setup({
-  org_agenda_files = { Orgmod_path .. '*' },
-  org_default_notes_file = Orgmod_path .. 'default.org',
-  org_agenda_templates = {
-    d = { description = 'default', template = '* TODO %? :personal:\n  %u' },
-    n = { description = 'neovim', template = '* TODO %? :neovim:\n %u', target = Orgmod_path .. 'nvim.org' },
-    z = { description = 'zendesk', template = '* TODO %? :zendesk:\n %u', target = Orgmod_path .. 'zendesk.org' },
-    r = { description = 'reading', template = '* TODO %? :reading:\n %u', target = Orgmod_path .. 'reading.org' },
-  },
-})
-
----------------------------------------------------------------------
 -- ToggleTerm
 ---------------------------------------------------------------------
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = 'CONFIG_DIR=~/.config/lazygit lazygit', hidden = true, direction = 'float' })
 -- not use
 local term = Terminal:new({ hidden = true, direction = 'float' })
-local taskwarrior = Terminal:new({ cmd = 'taskwarrior-tui', hidden = true, direction = 'float' })
 
 function Lazygit_toggle()
   lazygit:toggle()
@@ -314,12 +297,7 @@ function Term_toggle()
   term:toggle()
 end
 
-function Task_toggle()
-  taskwarrior:toggle()
-end
-
 vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>lua Task_toggle()<CR>", {noremap = true, silent = true})
 ---------------------------------------------------------------------
 -- Helper functions
 ---------------------------------------------------------------------
@@ -346,14 +324,13 @@ end
 ---------------------------------------------------------------------
 -- Main
 ---------------------------------------------------------------------
-if vim.api.nvim_eval('argc()') == 0 then
-vim.api.nvim_exec(
-  [[
-  augroup enter
-    autocmd VimEnter * lua Task_toggle()
-  augroup end
-]],
-  false
-)
-end
-
+-- if vim.api.nvim_eval('argc()') == 0 then
+-- vim.api.nvim_exec(
+--   [[
+--   augroup enter
+--     autocmd VimEnter * lua Task_toggle()
+--   augroup end
+-- ]],
+--   false
+-- )
+-- end
