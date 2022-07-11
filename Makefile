@@ -10,11 +10,10 @@ sync:
 	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/nvim
 	mkdir -p ~/.config/lazygit
+	mkdir -p ~/.config/fish
 
 	# Go stuff
-	go install github.com/justjanne/powerline-go@latest
 	go install github.com/jesseduffield/lazygit@latest
-
 
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
@@ -28,7 +27,9 @@ sync:
 	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
 	[ -f ~/.lazygit.conf ] || ln -s $(PWD)/lazygit.conf ~/.config/lazygit/config.yml
 	[ -f ~/.rubocop.yml ] || ln -s $(PWD)/rubocop.yml ~/.rubocop.yml
-	
+	[ -f ~/.config/fish/config.fish ] || ln -s $(PWD)/config.fish ~/.config/fish/config.fish
+	[ -d ~/.config/fish/functions ] || ln -s $(PWD)/functions ~/.config/fish/functions
+
 	# Krew
 	kubectl krew install < krew.txt
 
@@ -39,6 +40,8 @@ clean:
 	rm -f ~/.vimrc
 	rm -f ~/.taskrc
 	rm -f ~/.config/nvim/init.vim
+	rm -f ~/.config/fish/config.fish
+	rm -rf ~/.config/fish/functions
 	rm -f ~/.config/nvim/init.lua
 	rm -f ~/.config/alacritty/alacritty.yml
 	rm -f ~/.tmux.conf

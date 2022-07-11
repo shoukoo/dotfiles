@@ -81,6 +81,7 @@ vim.api.nvim_exec(
   [[
   augroup FiletypeDetect
     autocmd FileType lua setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType fish setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType org setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescriptreact setlocal expandtab shiftwidth=2 tabstop=2
