@@ -18,10 +18,8 @@ sync:
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
-	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
-	[ -f ~/.taskrc ] || ln -s $(PWD)/taskrc ~/.taskrc
 	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
 	[ -d ~/.config/nvim/lua ] || ln -s $(PWD)/lua ~/.config/nvim/lua
 	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
@@ -38,7 +36,6 @@ sync:
 
 clean:
 	rm -f ~/.vimrc
-	rm -f ~/.taskrc
 	rm -f ~/.config/nvim/init.vim
 	rm -f ~/.config/fish/config.fish
 	rm -rf ~/.config/fish/functions
@@ -46,7 +43,6 @@ clean:
 	rm -f ~/.config/alacritty/alacritty.yml
 	rm -f ~/.tmux.conf
 	rm -f ~/.git-prompt.sh
-	rm -f ~/.zshrc
 	rm -f ~/.rubocop.yml
 	rm -f ~/bin/fts
 	rm -rf ~/.config/nvim/lua
