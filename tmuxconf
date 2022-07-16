@@ -9,9 +9,12 @@ set-option -g default-shell /usr/local/bin/fish
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 set -g base-index 1
 
+# vim mode
 set-window-option -g mode-keys vi
 bind -T copy-mode-vi v send-keys -X begin-selection
 bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+
+# status
 set -g status-left "#[fg=#1d2021,bg=#a89984] #S "
 setw -g window-status-current-style fg=#84A899,bg=#3c3836
 setw -g window-status-style fg=#a89984,bg=#3c3836
@@ -27,3 +30,11 @@ bind -r k select-pane -U
 bind -r j select-pane -D
 bind -r h select-pane -L
 bind -r l select-pane -R
+
+# Pane resizing
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+bind-key - select-layout even-vertical
+bind-key | select-layout even-horizontal
