@@ -7,13 +7,12 @@ end
 local use = require('packer').use
 require('packer').startup(function()
   use('wbthomason/packer.nvim')
-  use('luisiacc/gruvbox-baby')
-  use("EdenEast/nightfox.nvim")
   use('google/vim-jsonnet')
   use('tpope/vim-fugitive')
   use('tpope/vim-rhubarb')
   use('junegunn/fzf.vim')
   use('sebdah/vim-delve')
+  use('folke/tokyonight.nvim')
   use({
     'junegunn/fzf',
     run = function()
@@ -42,7 +41,7 @@ require('packer').startup(function()
 end)
 
 -- Color scheme
-vim.cmd("colorscheme gruvbox-baby")
+vim.cmd("colorscheme tokyonight")
 
 
 -- Enable mouse mode
@@ -125,7 +124,6 @@ local on_attach = function(lsp)
     else
       buf_set_keymap('n', 'gf', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     end
-
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -148,7 +146,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tsserver', 'terraformls', 'pylsp', 'solargraph' }
+local servers = { 'gopls', 'tsserver', 'terraformls', 'pylsp', 'solargraph', 'zls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
