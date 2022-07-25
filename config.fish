@@ -31,7 +31,6 @@ alias ...='cd ../..'
 # kubectl
 alias k='kubectl'
 alias ks='kubectl --as admin --as-group system:masters'
-alias k9ss='k9s --as-group=system:masters --as admin'
 
 # lazy git
 alias lg='CONFIG_DIR=~/.config/lazygit lazygit'
