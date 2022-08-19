@@ -42,5 +42,8 @@ alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 # It contains work related stuff, some functions, aliases etc...
 source ~/.private.fish
 
+# direnv
+direnv hook fish | source
+
 # rbenv
 status --is-interactive; and source (rbenv init -|psub)

@@ -146,7 +146,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tsserver', 'terraformls', 'pylsp', 'solargraph', 'zls' }
+local servers = { 'gopls', 'tsserver', 'terraformls', 'pyright', 'solargraph' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
