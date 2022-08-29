@@ -83,6 +83,7 @@ vim.api.nvim_exec(
     autocmd FileType fish setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType org setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescriptreact setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2

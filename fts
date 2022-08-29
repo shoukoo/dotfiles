@@ -7,7 +7,11 @@ else
     items+=`find ~/Code/shoukoo -maxdepth 1 -mindepth 1 -type d`
     items+=("$HOME/shoukoo")
     items+=("$HOME/zendesk")
-    selected=`echo "$items" | fzf`
+    selected=`echo "$items" | gum filter --height 20`
+
+    if [ -z "$selected" ]; then
+      exit 1
+    fi 
 fi
 
 dirname=$( basename "$selected" )
