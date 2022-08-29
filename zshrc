@@ -54,27 +54,22 @@ export LANG="en_US.UTF-8"
 # =============
 #   Oh my zsh
 # =============
-source ~/.config/antigen.zsh
+# sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-autosuggestions
-
-antigen theme robbyrussell
-antigen apply
-
+ZSH_THEME="robbyrussell"
+plugins=(zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting vi-mode direnv rbenv)
+source ~/.oh-my-zsh/oh-my-zsh.sh
 
 
 # =============
 #    EXPORT
 # =============
 export PATH="/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/bin:$HOME/.krew/bin:$PATH"
-
 export EDITOR="nvim"
-export LSCOLORS=cxBxhxDxfxhxhxhxhxcxcx
-export CLICOLOR=1
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 # =============
 #    HISTORY
 # =============
@@ -164,11 +159,6 @@ function fif() {
 # ===================
 #    THIRD PARTY
 # ===================
-
-# brew install rbenv
-eval "$(rbenv init -)"
-# direnv
-eval "$(direnv hook zsh)"
 # powerline-go
 function powerline_precmd() {
     PS1="$($GOPATH/bin/powerline-go -modules="aws,kube,venv,ssh,cwd,perms,git,exit,root" -error $? -jobs ${${(%):%j}:-0})"
