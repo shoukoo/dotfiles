@@ -18,7 +18,6 @@ alias d='git diff'
 alias vi='nvim'
 alias vim='nvim'
 alias v='nvim'
-alias find='fd'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 alias cl="printf '\33c\e[3J'"
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
@@ -59,7 +58,7 @@ export LANG="en_US.UTF-8"
 # git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
-ZSH_THEME="robbyrussell"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#585858'
 plugins=(zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting vi-mode direnv rbenv)
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
@@ -135,8 +134,8 @@ function switchgo() {
 }
 
 function fcd() {
-  items=`find . ~/Code/zendesk --max-depth 1 --min-depth 1 --type directory`
-  items+=`find . ~/Code/shoukoo --max-depth 1 --min-depth 1 --type directory`
+  items=`find ~/Code/zendesk -maxdepth 1 -mindepth 1 -type d`
+  items+=`find ~/Code/shoukoo -maxdepth 1 -mindepth 1 -type d`
   items+=("$HOME/shoukoo")
   items+=("$HOME/zendesk")
   selected=`echo "$items" | gum filter --height 20`
@@ -176,3 +175,11 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#export SDKMAN_DIR="$HOME/.sdkman"
+#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

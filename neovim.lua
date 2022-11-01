@@ -13,6 +13,7 @@ require('packer').startup(function()
   use('junegunn/fzf.vim')
   use('sebdah/vim-delve')
   use('folke/tokyonight.nvim')
+  use('seblj/nvim-echo-diagnostics')
   use({
     'junegunn/fzf',
     run = function()
@@ -137,7 +138,7 @@ local on_attach = function(lsp)
     buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua require("echo-diagnostics").echo_entire_diagnostic()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -282,6 +283,13 @@ cmp.setup({
 })
 
 ---------------------------------------------------------------------
+-- nvim-echo-diagnostics
+---------------------------------------------------------------------
+require("echo-diagnostics").setup{
+    show_diagnostic_number = true,
+    show_diagnostic_source = false,
+}
+---------------------------------------------------------------------
 -- ToggleTerm
 ---------------------------------------------------------------------
 local Terminal = require('toggleterm.terminal').Terminal
@@ -298,6 +306,7 @@ function Term_toggle()
 end
 
 vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
+
 ---------------------------------------------------------------------
 -- Helper functions
 ---------------------------------------------------------------------
@@ -320,6 +329,7 @@ Gopls = function(timeoutms)
   end
   vim.lsp.buf.formatting_sync()
 end
+
 
 ---------------------------------------------------------------------
 -- Main

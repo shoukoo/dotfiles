@@ -2,6 +2,7 @@ unbind C-b
 set-option -g prefix C-f
 bind-key C-f send-prefix
 set -g status-style 'bg=#333333 fg=#5eacd3'
+set-option -g default-shell /bin/zsh
 
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 set -g base-index 1
