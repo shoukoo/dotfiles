@@ -66,8 +66,10 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 # =============
 #    EXPORT
 # =============
-export PATH="/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/bin:$HOME/.krew/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/bin:$HOME/go/bin:$HOME/.krew/bin:$PATH"
 export EDITOR="nvim"
+export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
 
 # =============
 #    HISTORY
@@ -134,10 +136,10 @@ function switchgo() {
 }
 
 function fcd() {
-  items=`find ~/Code/zendesk -maxdepth 1 -mindepth 1 -type d`
-  items+=`find ~/Code/shoukoo -maxdepth 1 -mindepth 1 -type d`
-  items+=("$HOME/shoukoo")
-  items+=("$HOME/zendesk")
+  codedirs=`find ~/Code -maxdepth 1 -mindepth 1 -type d`
+  for i in ${codedirs}; do
+    items+=`find $i -maxdepth 1 -mindepth 1 -type d`
+  done
   selected=`echo "$items" | gum filter --height 20`
   if [ -z "$selected" ]; then
     return
