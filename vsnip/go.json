@@ -94,9 +94,14 @@
     "body": "if ${1:condition} {\n\t$2\n} else {\n\t$0\n}",
     "description": "Snippet for if else"
   },
+  "if err != nil return": {
+    "prefix": "iferrr",
+    "body": "if err != nil {\n\t${1:return ${2:nil, }${3:err}}\n}",
+    "description": "Snippet for if err != nil with return "
+  },
   "if err != nil": {
     "prefix": "iferr",
-    "body": "if err != nil {\n\t${1:return ${2:nil, }${3:err}}\n}",
+    "body": "if err != nil {\n\t$1\n}",
     "description": "Snippet for if err != nil"
   },
   "fmt.Println": {
