@@ -34,7 +34,6 @@ require('packer').startup(function()
     },
   })
   use({ 'akinsho/toggleterm.nvim' })
-
   use('itchyny/lightline.vim')
   use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
@@ -42,7 +41,7 @@ require('packer').startup(function()
 end)
 
 -- Color scheme
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme tokyonight-moon")
 
 
 -- Enable mouse mode
@@ -82,8 +81,8 @@ vim.api.nvim_exec(
   augroup FiletypeDetect
     autocmd FileType lua setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType fish setlocal expandtab shiftwidth=2 tabstop=2
-    autocmd FileType org setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType vue setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescriptreact setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2
@@ -124,7 +123,7 @@ local on_attach = function(lsp)
     elseif lsp == 'gopls' then
       buf_set_keymap('n', 'gf', [[<Cmd>lua Gopls(1000)<CR>]], opts)
     else
-      buf_set_keymap('n', 'gf', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+      buf_set_keymap('n', 'gf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
     end
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -148,7 +147,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls' }
+local servers = { 'gopls', 'tsserver' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
@@ -262,10 +261,6 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true,
 -- Cmp
 ---------------------------------------------------------
 local cmp = require('cmp')
-local check_back_space = function()
-  local col = vim.fn.col('.') - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
-end
 
 cmp.setup({
 
@@ -274,10 +269,11 @@ cmp.setup({
       vim.fn['vsnip#anonymous'](args.body)
     end,
   },
-
   mapping = {
     ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+    ['<down>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+    ['<up>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
@@ -288,7 +284,6 @@ cmp.setup({
       vim_item.menu = ({
         nvim_lsp = '[LSP]',
         nvim_lua = '[Lua]',
-        orgmode = '[ORG]',
         vsnip = '[SNIP]',
         buffer = '[BUFFER]',
       })[entry.source.name]
