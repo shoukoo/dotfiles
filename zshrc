@@ -137,6 +137,7 @@ function switchgo() {
 
 function fcd() {
   codedirs=`find ~/Code -maxdepth 1 -mindepth 1 -type d`
+  items=""
   for i in ${codedirs}; do
     items+=`find $i -maxdepth 1 -mindepth 1 -type d`
   done
