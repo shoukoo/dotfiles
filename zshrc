@@ -136,11 +136,14 @@ function switchgo() {
 }
 
 function fcd() {
-  codedirs=`find ~/Code -maxdepth 1 -mindepth 1 -type d`
+  codedirs=$(find ~/Code -maxdepth 1 -mindepth 1 -type d | tr '\n' ' ')
+
   items=""
-  for i in ${codedirs}; do
+  for i in $( echo $codedirs); do
     items+=`find $i -maxdepth 1 -mindepth 1 -type d`
+    items+='\n'
   done
+
   selected=`echo "$items" | gum filter --height 20`
   if [ -z "$selected" ]; then
     return
@@ -178,11 +181,3 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="$HOME/.sdkman"
-#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
