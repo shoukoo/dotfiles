@@ -1,4 +1,5 @@
 ctx
+explore
 fuzzy
 ns
 stern
