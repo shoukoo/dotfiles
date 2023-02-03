@@ -12,8 +12,16 @@ require('packer').startup(function()
   use('tpope/vim-rhubarb')
   use('junegunn/fzf.vim')
   use('sebdah/vim-delve')
-  use('folke/tokyonight.nvim')
+  use {"ellisonleao/gruvbox.nvim"}
   use('seblj/nvim-echo-diagnostics')
+  use('nvim-tree/nvim-web-devicons')
+  use {
+  "folke/trouble.nvim",
+  requires = "nvim-tree/nvim-web-devicons",
+  config = function()
+    require("trouble").setup{}
+  end
+  }
   use({
     'junegunn/fzf',
     run = function()
@@ -41,8 +49,8 @@ require('packer').startup(function()
 end)
 
 -- Color scheme
-vim.cmd("colorscheme tokyonight-moon")
-
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -175,57 +183,6 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
--- Instruction: https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
--- brew install ninja
--- git clone https://github.com/sumneko/lua-language-server.git
--- cd lua-language-server
--- git submodule update --init --recursive
--- cd 3rd/luamake
--- ./compile/install.sh
--- cd ../..
--- ./3rd/luamake/luamake rebuild
-
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- 
--- local sumneko_root_path = vim.fn.getenv('HOME') .. '/Code/shoukoo/lua-language-server'
--- local sumneko_binary = sumneko_root_path .. '/bin/macOS/lua-language-server'
--- 
--- -- Make runtime files discoverable to the server
--- local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, 'lua/?.lua')
--- table.insert(runtime_path, 'lua/?/init.lua')
--- 
--- nvim_lsp.sumneko_lua.setup({
---   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
---   on_attach = on_attach('sumneko_lua'),
---   capabilities = capabilities,
---   settings = {
---     Lua = {
---       runtime = {
---         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
---         version = 'LuaJIT',
---         path = runtime_path,
---       },
---       diagnostics = {
---         -- Get the language server to recognize the `vim` global
---         globals = { 'vim' },
---       },
---       workspace = {
---         -- Make the server aware of Neovim runtime files
---         library = {
---           [vim.fn.expand('$VIMRUNTIME/lua')] = true,
---           [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
---         },
---       },
---       -- Do not send telemetry data containing a randomized but unique identifier
---       telemetry = {
---         enable = false,
---       },
---     },
---   },
--- })
-
 ---------------------------------------------------------------------
 -- Tree sitter
 ---------------------------------------------------------------------
@@ -306,6 +263,26 @@ require("echo-diagnostics").setup{
     show_diagnostic_number = true,
     show_diagnostic_source = false,
 }
+
+---------------------------------------------------------------------
+-- trouble
+---------------------------------------------------------------------
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
+  {silent = true, noremap = true}
+)
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
+  {silent = true, noremap = true}
+)
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
+  {silent = true, noremap = true}
+)
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
+  {silent = true, noremap = true}
+)
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+  {silent = true, noremap = true}
+)
+
 ---------------------------------------------------------------------
 -- ToggleTerm
 ---------------------------------------------------------------------
@@ -346,18 +323,3 @@ Gopls = function(timeoutms)
   end
   vim.lsp.buf.formatting_sync()
 end
-
-
----------------------------------------------------------------------
--- Main
----------------------------------------------------------------------
--- if vim.api.nvim_eval('argc()') == 0 then
--- vim.api.nvim_exec(
---   [[
---   augroup enter
---     autocmd VimEnter * lua Task_toggle()
---   augroup end
--- ]],
---   false
--- )
--- end
