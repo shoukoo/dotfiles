@@ -38,6 +38,11 @@ require('packer').startup(function()
   use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
   use('shoukoo/commentary.nvim')
+  -- javascript 
+  -- use('leafOfTree/vim-vue-plugin')
+  use('windwp/nvim-autopairs')
+  use('mattn/emmet-vim')
+
 end)
 
 -- Color scheme
@@ -80,6 +85,7 @@ vim.api.nvim_exec(
   [[
   augroup FiletypeDetect
     autocmd FileType lua setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType fish setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType vue setlocal expandtab shiftwidth=2 tabstop=2
@@ -92,6 +98,35 @@ vim.api.nvim_exec(
 ]],
   false
 )
+
+---------------------------------------------------------------------
+-- Tree sitter
+---------------------------------------------------------------------
+require('nvim-treesitter.configs').setup({
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = true,
+    disable = {},
+  },
+  ensure_installed = {
+    "css",
+    "go",
+    "hcl",
+    "html",
+    "json",
+    "lua",
+    "bash",
+    "toml",
+    "tsx",
+    "yaml",
+  },
+  autotag = {
+    enable = true,
+  },
+})
 
 ---------------------------------------------------------------------
 -- Lightline
@@ -147,7 +182,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tsserver' }
+local servers = { 'gopls', 'vuels' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
@@ -325,6 +360,16 @@ end
 vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true })
 
 ---------------------------------------------------------------------
+-- auto pair
+---------------------------------------------------------------------
+local status, autopairs = pcall(require, "nvim-autopairs")
+if (not status) then return end
+
+autopairs.setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
+})
+
+---------------------------------------------------------------------
 -- Helper functions
 ---------------------------------------------------------------------
 
@@ -346,18 +391,3 @@ Gopls = function(timeoutms)
   end
   vim.lsp.buf.formatting_sync()
 end
-
-
----------------------------------------------------------------------
--- Main
----------------------------------------------------------------------
--- if vim.api.nvim_eval('argc()') == 0 then
--- vim.api.nvim_exec(
---   [[
---   augroup enter
---     autocmd VimEnter * lua Task_toggle()
---   augroup end
--- ]],
---   false
--- )
--- end
