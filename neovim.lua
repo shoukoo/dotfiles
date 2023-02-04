@@ -12,6 +12,7 @@ require('packer').startup(function()
   use('tpope/vim-rhubarb')
   use('junegunn/fzf.vim')
   use('sebdah/vim-delve')
+  use('ray-x/go.nvim')
   use {"ellisonleao/gruvbox.nvim"}
   use('seblj/nvim-echo-diagnostics')
   use('nvim-tree/nvim-web-devicons')
@@ -348,22 +349,12 @@ autopairs.setup({
 ---------------------------------------------------------------------
 -- Helper functions
 ---------------------------------------------------------------------
-
--- custom handler to call both goimports + gofmt.
--- vim.lsp.buf.formatting doesn't trigger goimports
-Gopls = function(timeoutms)
-  local context = { source = { organizeImports = true } }
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
-
-  local method = 'textDocument/codeAction'
-  local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
-  if resp and resp[1] then
-    local result = resp[1].result
-    if result and result[1] then
-      local edit = result[1].edit
-      vim.lsp.util.apply_workspace_edit(edit)
-    end
-  end
-  vim.lsp.buf.formatting_sync()
-end
+require('go').setup()
+local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
