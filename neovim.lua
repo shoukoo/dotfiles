@@ -10,9 +10,17 @@ require('packer').startup(function()
   use('google/vim-jsonnet')
   use('tpope/vim-fugitive')
   use('tpope/vim-rhubarb')
-  use('junegunn/fzf.vim')
+  use('tpope/vim-surround')
+  use('shoukoo/stylua.nvim')
+  use('shoukoo/commentary.nvim')
+  -- golang
   use('sebdah/vim-delve')
   use('ray-x/go.nvim')
+  use('mfussenegger/nvim-dap')
+  use('rcarriga/nvim-dap-ui')
+  use('ray-x/guihua.lua')
+  use('theHamsta/nvim-dap-virtual-text')
+  -- colorscheme
   use {"ellisonleao/gruvbox.nvim"}
   use('seblj/nvim-echo-diagnostics')
   use('nvim-tree/nvim-web-devicons')
@@ -23,6 +31,8 @@ require('packer').startup(function()
     require("trouble").setup{}
   end
   }
+  -- fzf
+  use('junegunn/fzf.vim')
   use({
     'junegunn/fzf',
     run = function()
@@ -30,7 +40,6 @@ require('packer').startup(function()
     end,
   })
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-  use('nvim-treesitter/playground')
   use('neovim/nvim-lspconfig')
   use({
     'hrsh7th/nvim-cmp',
@@ -44,11 +53,11 @@ require('packer').startup(function()
   })
   use({ 'akinsho/toggleterm.nvim' })
   use('itchyny/lightline.vim')
-  use('tpope/vim-surround')
-  use('shoukoo/stylua.nvim')
-  use('shoukoo/commentary.nvim')
+
+
   -- javascript 
   -- use('leafOfTree/vim-vue-plugin')
+  use({'prettier/vim-prettier', run = 'yarn install --frozen-lockfile --production' })
   use('windwp/nvim-autopairs')
   use('mattn/emmet-vim')
 
@@ -94,8 +103,8 @@ vim.api.nvim_exec(
   [[
   augroup FiletypeDetect
     autocmd FileType lua setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType javascriptreact setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
-    autocmd FileType fish setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType vue setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2
@@ -165,7 +174,7 @@ local on_attach = function(lsp)
     if lsp == 'sumneko_lua' then
       buf_set_keymap('n', 'gf', [[<Cmd>lua require"stylua".format_file()<CR>]], opts)
     elseif lsp == 'gopls' then
-      buf_set_keymap('n', 'gf', [[<Cmd>lua Gopls(1000)<CR>]], opts)
+      buf_set_keymap('n', 'gf', [[<Cmd>lua require"go.format".gofmt()<CR>]], opts)
     else
       buf_set_keymap('n', 'gf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
     end
@@ -191,7 +200,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'vuels', 'quick_lint_js' }
+local servers = { 'gopls', 'quick_lint_js', 'tsserver' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
