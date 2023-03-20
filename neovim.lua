@@ -112,6 +112,7 @@ vim.api.nvim_exec(
     autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
     autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+    autocmd FileType text setlocal expandtab shiftwidth=2 tabstop=2
   augroup end
 ]],
   false
@@ -200,7 +201,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'quick_lint_js', 'tsserver' }
+local servers = { 'gopls', 'denols' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
