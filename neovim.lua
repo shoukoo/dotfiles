@@ -16,20 +16,19 @@ require('packer').startup(function()
   -- golang
   use('sebdah/vim-delve')
   use('ray-x/go.nvim')
-  use('mfussenegger/nvim-dap')
-  use('rcarriga/nvim-dap-ui')
   use('ray-x/guihua.lua')
-  use('theHamsta/nvim-dap-virtual-text')
   -- colorscheme
   use {"ellisonleao/gruvbox.nvim"}
   use('seblj/nvim-echo-diagnostics')
-  use('nvim-tree/nvim-web-devicons')
   use {
   "folke/trouble.nvim",
   requires = "nvim-tree/nvim-web-devicons",
   config = function()
     require("trouble").setup{}
   end
+  }
+  use {
+    'nvim-tree/nvim-tree.lua',
   }
   -- fzf
   use('junegunn/fzf.vim')
@@ -368,3 +367,24 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
+---------------------------------------------------------------------
+-- Nerdtree
+---------------------------------------------------------------------
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  renderer = {
+    group_empty = true,
+    icons = {
+      show = {
+        file = false,
+        folder = false,
+        folder_arrow = false,
+        git = false
+      }
+    }
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+vim.api.nvim_set_keymap("n", "<Leader>t", ":NvimTreeToggle<CR>", { noremap = true })
