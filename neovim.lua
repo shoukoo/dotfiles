@@ -13,6 +13,8 @@ require('packer').startup(function()
   use('tpope/vim-surround')
   use('shoukoo/stylua.nvim')
   use('shoukoo/commentary.nvim')
+  use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+  use('neovim/nvim-lspconfig')
   -- golang
   use('sebdah/vim-delve')
   use('ray-x/go.nvim')
@@ -38,8 +40,6 @@ require('packer').startup(function()
       vim.fn['fzf#install']()
     end,
   })
-  use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-  use('neovim/nvim-lspconfig')
   use({
     'hrsh7th/nvim-cmp',
     requires = {
@@ -53,9 +53,8 @@ require('packer').startup(function()
   use({ 'akinsho/toggleterm.nvim' })
   use('itchyny/lightline.vim')
 
-
   -- javascript 
-  -- use('leafOfTree/vim-vue-plugin')
+  use('posva/vim-vue')
   use({'prettier/vim-prettier', run = 'yarn install --frozen-lockfile --production' })
   use('windwp/nvim-autopairs')
   use('mattn/emmet-vim')
@@ -133,7 +132,6 @@ require('nvim-treesitter.configs').setup({
     "css",
     "go",
     "hcl",
-    "html",
     "json",
     "lua",
     "bash",
