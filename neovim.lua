@@ -7,7 +7,7 @@ end
 local use = require('packer').use
 require('packer').startup(function()
   use('wbthomason/packer.nvim')
-  use('google/vim-jsonnet')
+  -- use('google/vim-jsonnet')
   use('tpope/vim-fugitive')
   use('tpope/vim-rhubarb')
   use('tpope/vim-surround')
@@ -95,6 +95,8 @@ vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], {})
 vim.api.nvim_set_keymap('n', '<leader>sv', '<cmd>source $MYVIMRC<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>ev', '<cmd>vsplit $MYVIMRC<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>sp', '<cmd>so $MYVIMRC<cr><cmd>PackerInstall<cr>', { noremap = true })
+
+vim.o.jsonnet_fmt_on_save = 1
 
 -- Filetype indentation
 vim.api.nvim_exec(
@@ -381,8 +383,7 @@ require("nvim-tree").setup({
       }
     }
   },
-  filters = {
-    dotfiles = true,
-  },
 })
 vim.api.nvim_set_keymap("n", "<Leader>t", ":NvimTreeToggle<CR>", { noremap = true })
+
+
