@@ -384,6 +384,7 @@ require("nvim-tree").setup({
     }
   },
 })
-vim.api.nvim_set_keymap("n", "<Leader>t", ":NvimTreeToggle<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>tt", ":NvimTreeToggle<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>t", ":NvimTreeFocus<CR>", { noremap = true })
 
 
