@@ -132,6 +132,7 @@ require('nvim-treesitter.configs').setup({
   },
   ensure_installed = {
     "css",
+    "cue",
     "go",
     "hcl",
     "json",
