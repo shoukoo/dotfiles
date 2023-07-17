@@ -41,13 +41,21 @@ require("lazy").setup({
 
   -- statusline
   {
-    'itchyny/lightline.vim',
+    "nvim-lualine/lualine.nvim",
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      vim.g.lightline = {
-        active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-        colorscheme = 'solarized',
-        component_function = { gitbranch = 'fugitive#head' },
-      }
+      require("lualine").setup({
+        options = { theme = 'gruvbox' },
+        sections = {
+          lualine_c = {
+            {
+              'filename',
+              file_status = true, -- displays file status (readonly status, modified status)
+              path = 2 -- 0 = just filename, 1 = relative path, 2 = absolute path
+            }
+          }
+        }
+      })
     end,
   },
 
@@ -221,17 +229,6 @@ require("lazy").setup({
         sort_by = "case_sensitive",
         filters = {
           dotfiles = true,
-        },
-        renderer = {
-          group_empty = true,
-          icons = {
-            show = {
-              file = false,
-              folder = false,
-              folder_arrow = false,
-              git = false
-            }
-          }
         },
         on_attach = function(bufnr)
           local api = require('nvim-tree.api')

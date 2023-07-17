@@ -11,6 +11,8 @@ tap "instrumenta/instrumenta"
 tap "k14s/tap"
 tap "snyk/tap"
 tap "versent/taps"
+tap homebrew/cask-fonts
+brew "font-hack-nerd-font"
 brew "age"
 brew "openssl@1.1"
 brew "sqlite"
