@@ -132,6 +132,7 @@ require('nvim-treesitter.configs').setup({
   },
   ensure_installed = {
     "css",
+    "cue",
     "go",
     "hcl",
     "json",
@@ -171,9 +172,7 @@ local on_attach = function(lsp)
     -- Mappings.
     local opts = { noremap = true, silent = true }
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    if lsp == 'sumneko_lua' then
-      buf_set_keymap('n', 'gf', [[<Cmd>lua require"stylua".format_file()<CR>]], opts)
-    elseif lsp == 'gopls' then
+    if lsp == 'gopls' then
       buf_set_keymap('n', 'gf', [[<Cmd>lua require"go.format".gofmt()<CR>]], opts)
     else
       buf_set_keymap('n', 'gf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
@@ -200,7 +199,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'denols', "lua_ls" }
+local servers = { 'gopls', 'denols', "lua_ls", "rust_analyzer" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
 end
