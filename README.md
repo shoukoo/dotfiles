@@ -15,11 +15,6 @@ Download Brew files
 brew bundle
 ```
 
-Download the font
-```
-https://github.com/source-foundry/Hack
-```
-
 To delete all the exising configs
 ```bash
 Make clean

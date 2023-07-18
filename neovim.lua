@@ -349,10 +349,6 @@ vim.o.smartcase = true
 vim.o.breakindent = true
 -- terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], {})
--- Custom keys
-vim.api.nvim_set_keymap('n', '<leader>sv', '<cmd>source $MYVIMRC<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ev', '<cmd>vsplit $MYVIMRC<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sp', '<cmd>so $MYVIMRC<cr><cmd>PackerInstall<cr>', { noremap = true })
 
 ---------------------------------------------------------------------
 -- Fzf
