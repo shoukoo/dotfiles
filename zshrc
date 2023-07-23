@@ -144,7 +144,7 @@ function fcd() {
     items+='\n'
   done
 
-  selected=`echo "$items" | gum filter --height 20`
+  selected=`echo "$items" | fzf --height 10`
   if [ -z "$selected" ]; then
     return
   fi
@@ -152,7 +152,7 @@ function fcd() {
 }
 
 function fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | gum filter --height 20 | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 10 | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
 }
 
 function fif() {
