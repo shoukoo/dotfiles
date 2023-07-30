@@ -311,6 +311,7 @@ require("lazy").setup({
 vim.o.mouse = 'a'
 -- Enable number
 vim.wo.number = true
+vim.wo.relativenumber = true
 -- Turn off swapfile
 vim.o.swapfile = false
 -- Share the systemclipboard
