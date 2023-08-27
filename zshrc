@@ -10,8 +10,11 @@
 #    ALIAS
 # =============
 alias ..='cd ..'
-
+# k8s
+alias k=kubectl
 alias k9ss="k9s --as-group=system:masters --as admin"
+alias pka='pbpaste | kubectl apply -f-'
+alias pkr='pbpaste | kubectl delete -f-'
 alias t="tig status"
 alias tigs="tig status" #old habits don't die
 alias d='git diff'
@@ -22,7 +25,6 @@ alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 alias cl="printf '\33c\e[3J'"
 alias nvimtest="nvim --headless -c 'PlenaryBustedDirectory tests'"
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
-alias k=kubectl
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
 alias lg='CONFIG_DIR=~/.config/lazygit lazygit'
 alias cat='bat'
