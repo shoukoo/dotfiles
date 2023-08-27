@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  {"nvim-lua/plenary.nvim"},
 
   {
     "ellisonleao/gruvbox.nvim",
@@ -32,7 +33,7 @@ require("lazy").setup({
 
   {
     'tpope/vim-fugitive',
-    dependencies = { 'tpope/vim-rhubarb'},
+    dependencies = { 'tpope/vim-rhubarb' },
   },
 
   { 'shoukoo/commentary.nvim' },
@@ -391,3 +392,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
+---------------------------------------------------------------------
+-- Function
+---------------------------------------------------------------------
+P = function (v)
+  print(vim.inspect(v))
+  return v
+end
+
+-- reload a module
+R = function (name)
+  local plugin = require("lazy.core.config").plugins[name]
+  require("lazy.core.loader").reload(plugin)
+end
