@@ -16,6 +16,7 @@ sync:
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search ] || git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
+	[ -f ~/.gitignore ] || ln -s $(PWD)/gitignore ~/.gitignore
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
@@ -34,6 +35,9 @@ sync:
 	# Krew
 	kubectl krew install < krew.txt
 
+  # git
+	git config --global core.excludesfile ~/.gitignore
+
 	# don't show last login message
 	touch ~/.hushlogin
 
@@ -50,5 +54,6 @@ clean:
 	rm -rf ~/.vsnip
 	rm -rf ~/.config/lazygit/config.yml
 	rm -f ~/.zshrc
+	rm -f ~/.gitignore
 
 .PHONY: all clean sync build run kill
