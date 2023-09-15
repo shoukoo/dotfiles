@@ -59,6 +59,14 @@ require("lazy").setup({
   },
 
   {
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  {
     'junegunn/fzf.vim',
     dependencies = {
       "junegunn/fzf",
@@ -349,6 +357,10 @@ vim.o.smartcase = true
 vim.o.breakindent = true
 -- terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], {})
+---------------------------------------------------------------------
+-- Lazygit
+---------------------------------------------------------------------
+vim.api.nvim_set_keymap('n', '<leader>l', [[<cmd>LazyGit<CR>]], { noremap = true, silent = true })
 
 ---------------------------------------------------------------------
 -- Fzf
