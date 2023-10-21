@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {"nvim-lua/plenary.nvim"},
+  { "nvim-lua/plenary.nvim" },
 
   {
     "ellisonleao/gruvbox.nvim",
@@ -38,7 +38,6 @@ require("lazy").setup({
 
   { 'shoukoo/commentary.nvim' },
 
-  -- statusline
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -58,6 +57,8 @@ require("lazy").setup({
     end,
   },
 
+  -- setup lua lsp correctly
+  { "folke/neodev.nvim", opts = {} },
   {
     "kdheepak/lazygit.nvim",
     -- optional for floating window border decoration
@@ -264,6 +265,7 @@ require("lazy").setup({
   {
     'neovim/nvim-lspconfig',
     config = function()
+      require("neodev").setup({ })
       local nvim_lsp = require('lspconfig')
 
       -- Use an on_attach function to only map the following keys
@@ -396,24 +398,24 @@ vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
 ---------------------------------------------------------------------
 -- Go
 ---------------------------------------------------------------------
-local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+local format_sync_grp = vim.api.nvim_create_augroup("G0Import", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
-    require('go.format').goimport()
+    require('g0.format').goimports()
   end,
   group = format_sync_grp,
 })
 ---------------------------------------------------------------------
 -- Function
 ---------------------------------------------------------------------
-P = function (v)
+P = function(v)
   print(vim.inspect(v))
   return v
 end
 
 -- reload a module
-R = function (name)
+R = function(name)
   local plugin = require("lazy.core.config").plugins[name]
   require("lazy.core.loader").reload(plugin)
 end
