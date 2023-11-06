@@ -32,8 +32,10 @@ require("lazy").setup({
   },
 
   {
-    'tpope/vim-fugitive',
-    dependencies = { 'tpope/vim-rhubarb' },
+    'dinhhuy258/git.nvim',
+    config = function()
+      require("git").setup()
+    end,
   },
 
   { 'shoukoo/commentary.nvim' },
@@ -59,9 +61,9 @@ require("lazy").setup({
 
   -- setup lua lsp correctly
   { "folke/neodev.nvim", opts = {} },
+
   {
     "kdheepak/lazygit.nvim",
-    -- optional for floating window border decoration
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
@@ -366,12 +368,16 @@ vim.api.nvim_set_keymap('n', '<leader>l', [[<cmd>LazyGit<CR>]], { noremap = true
 
 ---------------------------------------------------------------------
 -- Fzf
+-- Git
 ---------------------------------------------------------------------
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>History<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>Files<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>Rg<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>gb', '<CMD>lua require("git.blame").blame()<CR>')
+vim.keymap.set('n', '<leader>go', "<CMD>lua require('git.browse').open(false)<CR>")
+vim.keymap.set('x', '<leader>go', ":<C-u> lua require('git.browse').open(true)<CR>")
 ---------------------------------------------------------------------
 -- Nerdtree
 ---------------------------------------------------------------------
