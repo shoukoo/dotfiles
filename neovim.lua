@@ -266,6 +266,15 @@ require("lazy").setup({
   },
 
   {
+    'stevearc/oil.nvim',
+    opts = {},
+    config = function()
+      require("oil").setup()
+    end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+
+  {
     'neovim/nvim-lspconfig',
     config = function()
       require("neodev").setup({})
@@ -389,6 +398,10 @@ vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev)
 vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.setqflist)
+---------------------------------------------------------------------
+-- Oil
+---------------------------------------------------------------------
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 ---------------------------------------------------------------------
 -- Nerdtree
 ---------------------------------------------------------------------
