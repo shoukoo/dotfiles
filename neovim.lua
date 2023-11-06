@@ -69,16 +69,19 @@ require("lazy").setup({
     },
   },
 
+  -- telescope
+  { 'nvim-telescope/telescope-ui-select.nvim' },
   {
-    'junegunn/fzf.vim',
+    "nvim-telescope/telescope.nvim",
     dependencies = {
-      "junegunn/fzf",
-      build = function()
-        vim.fn["fzf#install"]()
-      end,
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
-    end
+      require("telescope").setup()
+      require("telescope").load_extension("ui-select")
+    end,
   },
 
   {
@@ -119,7 +122,6 @@ require("lazy").setup({
       require("trouble").setup {}
     end
   },
-
 
   {
     "windwp/nvim-autopairs",
@@ -267,7 +269,7 @@ require("lazy").setup({
   {
     'neovim/nvim-lspconfig',
     config = function()
-      require("neodev").setup({ })
+      require("neodev").setup({})
       local nvim_lsp = require('lspconfig')
 
       -- Use an on_attach function to only map the following keys
@@ -365,20 +367,22 @@ vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], {})
 -- Lazygit
 ---------------------------------------------------------------------
 vim.api.nvim_set_keymap('n', '<leader>l', [[<cmd>LazyGit<CR>]], { noremap = true, silent = true })
-
 ---------------------------------------------------------------------
--- Fzf
 -- Git
 ---------------------------------------------------------------------
-vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>History<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>Files<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>Rg<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gb', '<CMD>lua require("git.blame").blame()<CR>')
 vim.keymap.set('n', '<leader>go', "<CMD>lua require('git.browse').open(false)<CR>")
 vim.keymap.set('x', '<leader>go', ":<C-u> lua require('git.browse').open(true)<CR>")
 ---------------------------------------------------------------------
+-- Telescope
+---------------------------------------------------------------------
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fd', builtin.lsp_document_symbols, {})
+vim.keymap.set('n', '<leader>td', builtin.diagnostics, {})
+vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
+vim.keymap.set('n', '<leader>fr', builtin.live_grep, {})
 -- Nerdtree
 ---------------------------------------------------------------------
 vim.api.nvim_set_keymap("n", "<Leader>tt", ":NvimTreeToggle<CR>", { noremap = true })
