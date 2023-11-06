@@ -383,6 +383,14 @@ vim.keymap.set('n', '<leader>fd', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>td', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>fr', builtin.live_grep, {})
+---------------------------------------------------------------------
+-- Diagnostics
+---------------------------------------------------------------------
+vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>ds', vim.diagnostic.setqflist)
+---------------------------------------------------------------------
 -- Nerdtree
 ---------------------------------------------------------------------
 vim.api.nvim_set_keymap("n", "<Leader>tt", ":NvimTreeToggle<CR>", { noremap = true })
@@ -406,7 +414,7 @@ vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
   { silent = true, noremap = true }
 )
 ---------------------------------------------------------------------
--- Go
+-- G0
 ---------------------------------------------------------------------
 local format_sync_grp = vim.api.nvim_create_augroup("G0Import", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
