@@ -151,6 +151,35 @@ function fcd() {
   cd $selected
 }
 
+function fs() {
+  codedirs=$(find ~/Code -maxdepth 1 -mindepth 1 -type d | tr '\n' ' ')
+
+  items=""
+  for i in $( echo $codedirs); do
+    items+=`find $i -maxdepth 1 -mindepth 1 -type d`
+    items+='\n'
+  done
+
+  selected=`echo "$items" | fzf --height 10`
+  if [ -z "$selected" ]; then
+    return
+  fi
+
+  selected_name=$(basename "$selected" | tr . _)
+  tmux_running=$(pgrep tmux)
+
+  if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+      tmux new-session -s $selected_name -c $selected
+      exit 0
+  fi
+
+  if ! tmux has-session -t=$selected_name 2> /dev/null; then
+      tmux new-session -ds $selected_name -c $selected
+  fi
+
+  tmux switch-client -t $selected_name
+}
+
 function fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 10 | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
 }
