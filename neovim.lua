@@ -17,7 +17,7 @@ require("lazy").setup({
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
+   config = function()
       vim.cmd([[colorscheme gruvbox]])
     end,
   },
@@ -397,16 +397,16 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fd', builtin.lsp_document_symbols, {})
-vim.keymap.set('n', '<leader>td', builtin.diagnostics, {})
+vim.keymap.set('n', '<leader>xx', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>fr', builtin.live_grep, {})
 ---------------------------------------------------------------------
 -- Diagnostics
 ---------------------------------------------------------------------
-vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev)
-vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>ds', vim.diagnostic.setqflist)
+vim.keymap.set('n', '<leader>xo', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>xp', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>xn', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>xs', vim.diagnostic.setqflist)
 ---------------------------------------------------------------------
 -- Oil
 ---------------------------------------------------------------------
