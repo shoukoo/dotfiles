@@ -30,11 +30,11 @@ require("lazy").setup({
       require("go").setup()
     end
   },
-  { 'shoukoo/g0.nvim',
+  {
+    'shoukoo/g0.nvim',
     config = function()
       require("g0").setup()
-    end,
-    dir = "/Users/shoukoo/Code/shoukoo/g0.nvim",
+    end
   },
 
   {
