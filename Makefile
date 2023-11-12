@@ -11,6 +11,7 @@ sync:
 	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/nvim
 	mkdir -p ~/.config/lazygit
+	mkdir -p ~/.config/zellij
 
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] || git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search ] || git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
@@ -27,6 +28,7 @@ sync:
 	[ -f ~/.config/lazygit/config.yml ] || ln -s $(PWD)/lazygit.conf ~/.config/lazygit/config.yml
 	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
+	[ -f ~/.config/zellij/config.kdl ] || ln -s $(PWD)/zellij.kdl ~/.config/zellij/config.kdl
 
 	# go
 	go install github.com/justjanne/powerline-go@latest
@@ -42,6 +44,7 @@ sync:
 	touch ~/.hushlogin
 
 clean:
+	rm -rf ~/.config/zellij/config.kdl
 	rm -f ~/.vimrc
 	rm -f ~/.config/nvim/init.vim
 	rm -f ~/.config/nvim/init.lua

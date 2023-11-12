@@ -21,6 +21,7 @@ alias d='git diff'
 alias vi='nvim'
 alias vim='nvim'
 alias v='nvim'
+alias z='zellij'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 alias cl="printf '\33c\e[3J'"
 alias nvimtest="nvim --headless -c 'PlenaryBustedDirectory tests'"
