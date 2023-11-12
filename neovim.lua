@@ -407,7 +407,7 @@ vim.keymap.set('x', '<leader>go', ":<C-u> lua require('git.browse').open(true)<C
 ---------------------------------------------------------------------
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>", {})
 vim.keymap.set('n', '<leader>fd', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>xx', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
