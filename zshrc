@@ -27,7 +27,6 @@ alias nvimtest="nvim --headless -c 'PlenaryBustedDirectory tests'"
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
 alias fix='git diff --name-only | uniq | xargs $EDITOR'
 alias lg='CONFIG_DIR=~/.config/lazygit lazygit'
-alias cat='bat'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 alias vimrc='vim ~/.config/nvim/init.lua'
 function ks () {
