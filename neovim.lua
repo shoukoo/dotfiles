@@ -135,6 +135,7 @@ require("lazy").setup({
           "toml",
           "tsx",
           "yaml",
+          "kdl",
         },
         autotag = {
           enable = true,
