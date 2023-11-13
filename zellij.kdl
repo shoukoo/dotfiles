@@ -1,3 +1,19 @@
+themes {
+    // gruvbox-dark
+    default {
+        fg 213 196 161
+        bg 40 40 40
+        black 60 56 54
+        red 204 36 29
+        green 152 151 26
+        yellow 215 153 33
+        blue 69 133 136
+        magenta 177 98 134
+        cyan 104 157 106
+        white 251 241 199
+        orange 214 93 14
+    }
+}
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal clear-defaults=true {
@@ -29,6 +45,7 @@ keybinds {
         bind "o" { SwitchToMode "Session"; }
         bind "q" { Quit; }
     }
+
 
     // locked {
     //     bind "Ctrl g" { SwitchToMode "Normal"; }
