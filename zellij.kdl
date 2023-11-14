@@ -22,6 +22,7 @@ keybinds {
         unbind "Ctrl b"
         // general stuff
         bind "Alt n" { NewPane; }
+        bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
         bind "Alt w" { ToggleFloatingPanes;}
         bind "Alt t" { NewTab;}
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
