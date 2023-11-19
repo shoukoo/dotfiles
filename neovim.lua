@@ -436,7 +436,13 @@ local format_sync_grp = vim.api.nvim_create_augroup("G0Import", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
-    require('g0.format').goimports()
+    local success, result = pcall(function()
+      require('g0.format').goimports()
+    end)
+
+    if not success then
+      vim.notify(result, vim.log.levels.ERROR)
+    end
   end,
   group = format_sync_grp,
 })
