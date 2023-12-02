@@ -37,6 +37,7 @@ keybinds {
 
     tmux clear-defaults=true {
         bind "Ctrl f" { Write 2; SwitchToMode "Normal"; }
+        bind "Esc" { SwitchToMode "Normal"; }
         bind "g" { SwitchToMode "Locked"; }
         bind "p" { SwitchToMode "Pane"; }
         bind "t" { SwitchToMode "Tab"; }
