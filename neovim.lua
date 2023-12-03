@@ -76,7 +76,7 @@ require("lazy").setup({
   },
 
   {
-    'junegunn/fzf.vim',
+    "ibhagwan/fzf-lua",
     dependencies = {
       "junegunn/fzf",
       build = function()
@@ -84,6 +84,12 @@ require("lazy").setup({
       end,
     },
     config = function()
+      require("fzf-lua").setup({
+        grep = {
+          rg_opts = "--sort-files --hidden --column --line-number --no-heading " ..
+              "--color=always --smart-case -g '!{.git,node_modules}/*'",
+        }
+      })
     end
   },
 
@@ -383,10 +389,11 @@ vim.keymap.set('x', '<leader>go', ":<C-u> lua require('git.browse').open(true)<C
 -- Fzf
 ---------------------------------------------------------------------
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>History<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>Files<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>Rg<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('fzf-lua').files()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>lua require('fzf-lua').live_grep()<CR>]],
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('fzf-lua').lines()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xx', [[<cmd>lua require('fzf-lua').diagnostics_workspace()<CR>]], { noremap = true, silent = true })
 ---------------------------------------------------------------------
 -- Diagnostics
 ---------------------------------------------------------------------
