@@ -75,40 +75,16 @@ require("lazy").setup({
     },
   },
 
-  -- telescope
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  { 'nvim-telescope/telescope-ui-select.nvim' },
   {
-    "nvim-telescope/telescope.nvim",
+    'junegunn/fzf.vim',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    fzf = {
-      fuzzy = true, -- false will only do exact matching
-      override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-      -- the default case_mode is "smart_case"
+      "junegunn/fzf",
+      build = function()
+        vim.fn["fzf#install"]()
+      end,
     },
     config = function()
-      require("telescope").setup({
-        pickers = {
-          find_files = {
-            find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
-          },
-          live_grep = {
-            additional_args = function(opts)
-              return { "--hidden" }
-            end
-          },
-        }
-      })
-
-      require("telescope").load_extension("ui-select")
-      require('telescope').load_extension('fzf')
-    end,
+    end
   },
 
   {
@@ -404,15 +380,13 @@ vim.keymap.set('n', '<leader>gb', '<CMD>lua require("git.blame").blame()<CR>')
 vim.keymap.set('n', '<leader>go', "<CMD>lua require('git.browse').open(false)<CR>")
 vim.keymap.set('x', '<leader>go', ":<C-u> lua require('git.browse').open(true)<CR>")
 ---------------------------------------------------------------------
--- Telescope
+-- Fzf
 ---------------------------------------------------------------------
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>", {})
-vim.keymap.set('n', '<leader>fd', builtin.lsp_document_symbols, {})
-vim.keymap.set('n', '<leader>xx', builtin.diagnostics, {})
-vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
-vim.keymap.set('n', '<leader>fr', builtin.live_grep, {})
+vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>History<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>Files<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>Rg<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true, silent = true })
 ---------------------------------------------------------------------
 -- Diagnostics
 ---------------------------------------------------------------------
