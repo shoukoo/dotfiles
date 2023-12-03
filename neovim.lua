@@ -24,12 +24,8 @@ require("lazy").setup({
 
   -- golang
   { 'sebdah/vim-delve' },
-  {
-    'ray-x/go.nvim',
+  { 'shoukoo/g0.nvim',
     config = function()
-      require("go").setup()
-    end
-  },
   {
     'shoukoo/g0.nvim',
     config = function()
@@ -393,10 +389,10 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('fzf-lua').files()
 vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>lua require('fzf-lua').live_grep()<CR>]],
   { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('fzf-lua').lines()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>xx', [[<cmd>lua require('fzf-lua').diagnostics_workspace()<CR>]], { noremap = true, silent = true })
 ---------------------------------------------------------------------
 -- Diagnostics
 ---------------------------------------------------------------------
+vim.api.nvim_set_keymap('n', '<leader>xx', [[<cmd>lua require('fzf-lua').diagnostics_workspace()<CR>]], { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>xo', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>xp', vim.diagnostic.goto_prev)
 vim.keymap.set('n', '<leader>xn', vim.diagnostic.goto_next)
