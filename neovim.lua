@@ -24,8 +24,6 @@ require("lazy").setup({
 
   -- golang
   { 'sebdah/vim-delve' },
-  { 'shoukoo/g0.nvim',
-    config = function()
   {
     'shoukoo/g0.nvim',
     config = function()
