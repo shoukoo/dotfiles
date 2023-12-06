@@ -11,7 +11,9 @@ sync:
 	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/nvim
 	mkdir -p ~/.config/lazygit
-	mkdir -p ~/.config/zellij
+	mkdir -p ~/.config/zellij/plugins
+
+
 
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] || git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search ] || git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
@@ -30,12 +32,12 @@ sync:
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.config/zellij/config.kdl ] || ln -s $(PWD)/zellij.kdl ~/.config/zellij/config.kdl
 
+	# zellij plugins
+	curl -L "https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" -o ~/.config/zellij/plugins/zjstatus.wasm
+
 	# go
 	go install github.com/justjanne/powerline-go@latest
 	go install github.com/jesseduffield/lazygit@latest
-
-	# Krew
-	kubectl krew install < krew.txt
 
   # git
 	git config --global core.excludesfile ~/.gitignore
