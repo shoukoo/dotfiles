@@ -1,3 +1,27 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+            format_left  "{mode} #[fg=#d79921,bold,bg=#3c3836]{session} {tabs}"
+            format_right "#[bg=#3c3836,fg=#191919]{datetime}"
+            format_space ""
+
+            border_enabled  "true"
+
+            tab_normal   "#[fg=#928374] {name} "
+            tab_active   "#[fg=#d79921,bold,bg=#504945] {name} "
+
+
+            datetime        "#[fg=#d79921,bold,bg=#3c3836] {format} "
+            datetime_format "%A, %d %b %Y %H:%M"
+            datetime_timezone "Australia/Melbourne"
+        }
+    }
+    pane
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
+
 themes {
     // gruvbox-dark
     default {
