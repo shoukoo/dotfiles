@@ -15,13 +15,11 @@ alias k=kubectl
 alias k9ss="k9s --as-group=system:masters --as admin"
 alias pka='pbpaste | kubectl apply -f-'
 alias pkr='pbpaste | kubectl delete -f-'
-alias t="tig status"
 alias tigs="tig status" #old habits don't die
 alias d='git diff'
 alias vi='nvim'
 alias vim='nvim'
 alias v='nvim'
-alias z='zellij'
 alias vimx='nvim --cmd "set rtp+=./"' # use it when developing a vim lua plugin
 alias cl="printf '\33c\e[3J'"
 alias nvimtest="nvim --headless -c 'PlenaryBustedDirectory tests'"
@@ -32,6 +30,9 @@ alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 alias vimrc='vim ~/.config/nvim/init.lua'
 function ks () {
   kubectl --as admin --as-group system:masters "${@}"
+}
+function z() {
+  zellij --layout ~/.config/zellij/config.kdl "${@}"
 }
 
 case `uname` in
