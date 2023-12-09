@@ -32,6 +32,7 @@ function ks () {
   kubectl --as admin --as-group system:masters "${@}"
 }
 function z() {
+  set -x
   zellij --layout ~/.config/zellij/config.kdl "${@}"
 }
 
@@ -100,23 +101,6 @@ setopt share_history
 typeset -U path PATH cdpath CDPATH fpath FPATH manpath MANPATH
 
 # only exit if we're not on the last pane
-
-exit() {
-  if [[ -z $TMUX ]]; then
-    builtin exit
-    return
-  fi
-
-  panes=$(tmux list-panes | wc -l)
-  wins=$(tmux list-windows | wc -l)
-  count=$(($panes + $wins - 1))
-  if [ $count -eq 1 ]; then
-    tmux detach
-  else
-    builtin exit
-  fi
-}
-
 function switchgo() {
   version=$1
   if [ -z $version ]; then
@@ -150,35 +134,6 @@ function fcd() {
     return
   fi
   cd $selected
-}
-
-function fs() {
-  codedirs=$(find ~/Code -maxdepth 1 -mindepth 1 -type d | tr '\n' ' ')
-
-  items=""
-  for i in $( echo $codedirs); do
-    items+=`find $i -maxdepth 1 -mindepth 1 -type d`
-    items+='\n'
-  done
-
-  selected=`echo "$items" | fzf --height 10`
-  if [ -z "$selected" ]; then
-    return
-  fi
-
-  selected_name=$(basename "$selected" | tr . _)
-  tmux_running=$(pgrep tmux)
-
-  if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-      tmux new-session -s $selected_name -c $selected
-      exit 0
-  fi
-
-  if ! tmux has-session -t=$selected_name 2> /dev/null; then
-      tmux new-session -ds $selected_name -c $selected
-  fi
-
-  tmux switch-client -t $selected_name
 }
 
 function fh() {
