@@ -24,11 +24,16 @@ require("lazy").setup({
 
   -- golang
   { 'sebdah/vim-delve' },
-  {
-    'shoukoo/g0.nvim',
+  { 'shoukoo/g0.nvim',
     config = function()
-      require("g0").setup()
-    end
+      require("g0").setup({
+        gomodifytags = {
+          tags = "xml,json",
+          options = "json=omitempty"
+        }
+      })
+    end,
+    dir = "/Users/shoukoo/Code/shoukoo/g0.nvim",
   },
 
   {
@@ -307,19 +312,23 @@ require("lazy").setup({
         end
       end
 
+      local settings = {
+        gopls = {
+          gopls = {
+            buildFlags = { "-tags=workflows,integration" }
+          }
+        }
+      }
+
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
       -- Use a loop to conveniently call 'setup' on multiple servers and
       -- map buffer local keybindings when the language server attaches
       local servers = { 'gopls', 'denols', "lua_ls", "rust_analyzer" }
       for _, lsp in ipairs(servers) do
-        nvim_lsp[lsp].setup({ on_attach = on_attach(lsp) })
+        nvim_lsp[lsp].setup({ on_attach = on_attach(lsp), settings = settings[lsp] })
       end
     end
   },
-  --   use('posva/vim-vue')
-  --   use({'prettier/vim-prettier', run = 'yarn install --frozen-lockfile --production' })
-  --   use('windwp/nvim-autopairs')
-  --   use('mattn/emmet-vim')
 })
 
 -- Enable mouse mode
