@@ -15,7 +15,6 @@ alias k=kubectl
 alias k9ss="k9s --as-group=system:masters --as admin"
 alias pka='pbpaste | kubectl apply -f-'
 alias pkr='pbpaste | kubectl delete -f-'
-alias tigs="tig status" #old habits don't die
 alias d='git diff'
 alias vi='nvim'
 alias vim='nvim'
@@ -30,10 +29,6 @@ alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 alias vimrc='vim ~/.config/nvim/init.lua'
 function ks () {
   kubectl --as admin --as-group system:masters "${@}"
-}
-function z() {
-  set -x
-  zellij --layout ~/.config/zellij/config.kdl "${@}"
 }
 
 case `uname` in
