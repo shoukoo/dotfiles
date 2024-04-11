@@ -61,7 +61,7 @@ export FZF_DEFAULT_COMMAND='rg --hidden --glob=!.git/ -l ""'
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#585858'
-plugins=(zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting vi-mode direnv rbenv)
+plugins=(zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting vi-mode direnv rbenv fzf)
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
 
@@ -81,6 +81,7 @@ export GOBIN=$HOME/go/bin
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
+HISTORY_IGNORE="(ls|cd|pwd|exit|cd)*"
 
 setopt append_history
 setopt extended_history
