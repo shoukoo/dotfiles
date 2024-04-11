@@ -335,7 +335,8 @@ require("lazy").setup({
 vim.o.mouse = 'a'
 -- Enable number
 vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
+vim.api.nvim_set_keymap("n", "<f2>", ":set relativenumber!<cr>", { noremap = true })
 -- Turn off swapfile
 vim.o.swapfile = false
 -- Share the systemclipboard
