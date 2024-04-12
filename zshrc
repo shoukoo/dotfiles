@@ -132,10 +132,6 @@ function fcd() {
   cd $selected
 }
 
-function fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 10 | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
-}
-
 function fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   file=$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")
