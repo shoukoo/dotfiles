@@ -415,7 +415,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
     local success, result = pcall(function()
-      require('g0.format').goimports()
+      require('g0.format').lsp_imports()
     end)
 
     if not success then
