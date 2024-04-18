@@ -68,6 +68,15 @@ export EDITOR="nvim"
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 
+
+# =============
+#    EDIT CMD
+# =============
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
 # =============
 #    HISTORY
 # =============
