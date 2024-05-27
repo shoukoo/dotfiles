@@ -141,6 +141,17 @@ function fcd() {
   cd $selected
 }
 
+
+function ficd() {
+  codedirs=$(find . -type d )
+
+  selected=`echo "$codedirs" | fzf --height 10`
+  if [ -z "$selected" ]; then
+    return
+  fi
+  cd $selected
+}
+
 function fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   file=$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")
