@@ -83,6 +83,7 @@ require("lazy").setup({
       end,
     },
     config = function()
+      vim.cmd [[ command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --hidden --smart-case --no-heading --color=always -g "!.git" -g "!src/lib/types" ' .shellescape(<q-args>), 1, <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%') : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e --black --border --bind ctrl-j:preview-down,ctrl-k:preview-up,ctrl-u:preview-page-up,ctrl-d:preview-page-down,tab:toggle+down,shift-tab:toggle+up'}, 'right:50%', '?'), <bang>0) ]]
     end
   },
 
@@ -401,12 +402,7 @@ vim.keymap.set('n', '<leader>xs', vim.diagnostic.setqflist)
 ---------------------------------------------------------------------
 -- Oil
 ---------------------------------------------------------------------
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
----------------------------------------------------------------------
--- Nerdtree
----------------------------------------------------------------------
-vim.api.nvim_set_keymap("n", "<Leader>tt", ":NvimTreeToggle<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>t", ":NvimTreeFocus<CR>", { noremap = true })
+vim.keymap.set("n", "\\", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 ---------------------------------------------------------------------
 -- G0
 ---------------------------------------------------------------------
