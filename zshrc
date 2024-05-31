@@ -45,7 +45,7 @@ esac
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
-export FZF_DEFAULT_COMMAND='rg --hidden --glob=!.git/ -l ""'
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 
 # =============
 #   Oh my zsh
