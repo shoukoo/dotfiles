@@ -403,9 +403,6 @@ debug:
   # Print all received window events.
   print_events: false
 
-  # Record all characters and escape sequences as test data.
-  ref_test: false
-
 # Key bindings
 #
 # Key bindings are specified as a list of objects. Each binding will specify a
