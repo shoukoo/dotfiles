@@ -32,9 +32,6 @@ sync:
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.config/zellij/config.kdl ] || ln -s $(PWD)/zellij.kdl ~/.config/zellij/config.kdl
 
-	# zellij plugins
-	curl -L "https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" -o ~/.config/zellij/plugins/zjstatus.wasm
-
 	# go
 	go install github.com/justjanne/powerline-go@latest
 	go install github.com/jesseduffield/lazygit@latest
