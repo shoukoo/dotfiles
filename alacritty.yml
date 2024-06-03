@@ -178,11 +178,6 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Tomorrow Night Bright)
-#
-
-custom_cursor_colors: true
-
 colors:
   primary:
     background: '0x191919'
@@ -313,14 +308,6 @@ mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
 mouse:
-  # Click settings
-  #
-  # The `double_click` and `triple_click` settings control the time
-  # alacritty should wait for accepting multiple clicks as one double
-  # or triple click.
-  double_click: { threshold: 300 }
-  triple_click: { threshold: 300 }
-
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
 
@@ -331,9 +318,6 @@ selection:
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
 
-# Allow terminal applications to change Alacritty's window title.
-window.dynamic_title: true
-window.opacity: 1.0
 
 cursor:
   # Cursor style
@@ -378,9 +362,6 @@ working_directory: None
 # disabled by default, as stability may not be as good as the winpty
 # backend.
 #
-# Alacritty will fall back to the WinPTY automatically if the ConPTY
-# backend cannot be initialized.
-enable_experimental_conpty_backend: false
 
 debug:
   # Display the time it takes to redraw each frame.
