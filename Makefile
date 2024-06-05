@@ -21,7 +21,6 @@ sync:
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	[ -f ~/.gitignore ] || ln -s $(PWD)/gitignore ~/.gitignore
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
-	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
 	[ -f ~/bin/fts ] || ln -s $(PWD)/fts ~/bin/fts
 	[ -d ~/.config/nvim/lua ] || ln -s $(PWD)/lua ~/.config/nvim/lua
@@ -50,7 +49,6 @@ clean:
 	rm -f ~/.config/nvim/init.lua
 	rm -f ~/.config/alacritty/alacritty.yml
 	rm -f ~/.config/alacritty/alacritty.toml
-	rm -f ~/.tmux.conf
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.rubocop.yml
 	rm -f ~/bin/fts
