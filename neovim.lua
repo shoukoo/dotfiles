@@ -37,7 +37,7 @@ require("lazy").setup({
   },
 
   {
-    'dinhhuy258/git.nvim',
+    'shoukoo/git.nvim',
     config = function()
       require("git").setup()
     end,
