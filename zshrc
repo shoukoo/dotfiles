@@ -139,6 +139,7 @@ function fcd() {
     return
   fi
   cd $selected
+  zellij action rename-tab "${selected##*/}"
 }
 
 
