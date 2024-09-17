@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  { "vimwiki/vimwiki" },
   { "nvim-lua/plenary.nvim" },
 
   {
@@ -384,6 +385,11 @@ vim.api.nvim_set_keymap('n', '<leader>l', [[<cmd>LazyGit<CR>]], { noremap = true
 vim.keymap.set('n', '<leader>gb', '<CMD>lua require("git.blame").blame()<CR>')
 vim.keymap.set('n', '<leader>go', "<CMD>lua require('git.browse').open(false)<CR>")
 vim.keymap.set('x', '<leader>go', ":<C-u> lua require('git.browse').open(true)<CR>")
+---------------------------------------------------------------------
+-- Vimwiki
+---------------------------------------------------------------------
+vim.api.nvim_set_keymap('n', '<leader>ww', [[<cmd>VimwikiIndex<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>wt', [[<cmd>VimwikiToggleListItem<CR>]], { noremap = true, silent = true })
 ---------------------------------------------------------------------
 -- Fzf
 ---------------------------------------------------------------------
