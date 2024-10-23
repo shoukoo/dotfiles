@@ -82,7 +82,7 @@ brew "hashicorp/tap/terraform-ls"
 cask "alacritty"
 cask "aws-vault"
 cask "docker"
-cask "maccy"
+cask "wezterm"
 cask "zoom"
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434

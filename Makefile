@@ -9,6 +9,7 @@ sync:
 	mkdir -p ~/Code/shoukoo
 	mkdir -p ~/bin
 	mkdir -p ~/.config/alacritty
+	mkdir -p ~/.config/wezterm
 	mkdir -p ~/.config/nvim
 	mkdir -p ~/.config/lazygit
 	mkdir -p ~/.config/zellij/plugins
@@ -27,13 +28,13 @@ sync:
 	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
 	[ -f ~/.rubocop.yml ] || ln -s $(PWD)/rubocop.yml ~/.rubocop.yml
 	[ -f ~/.config/lazygit/config.yml ] || ln -s $(PWD)/lazygit.conf ~/.config/lazygit/config.yml
-	[ -f ~/.config/alacritty/alacritty.yml ] || ln -s $(PWD)/alacritty.yml ~/.config/alacritty/alacritty.yml
 	[ -f ~/.config/alacritty/alacritty.toml ] || ln -s $(PWD)/alacritty.toml ~/.config/alacritty/alacritty.toml
+	[ -f ~/.config/wezterm/wezterm.lua ] || ln -s $(PWD)/wezterm.lua ~/.config/wezterm/wezterm.lua
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.config/zellij/config.kdl ] || ln -s $(PWD)/zellij.kdl ~/.config/zellij/config.kdl
 
 	# go
-	go install github.com/justjanne/powerline-go@latest
+	go install github.com/justjanne/powerline-go@bedd965
 	go install github.com/jesseduffield/lazygit@latest
 
   # git
@@ -47,8 +48,8 @@ clean:
 	rm -f ~/.vimrc
 	rm -f ~/.config/nvim/init.vim
 	rm -f ~/.config/nvim/init.lua
-	rm -f ~/.config/alacritty/alacritty.yml
 	rm -f ~/.config/alacritty/alacritty.toml
+	rm -f ~/.config/wezterm/wezterm.lua
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.rubocop.yml
 	rm -f ~/bin/fts
