@@ -8,7 +8,6 @@ brew-list:
 sync:
 	mkdir -p ~/Code/shoukoo
 	mkdir -p ~/bin
-	mkdir -p ~/.config/alacritty
 	mkdir -p ~/.config/wezterm
 	mkdir -p ~/.config/nvim
 	mkdir -p ~/.config/lazygit
@@ -28,7 +27,6 @@ sync:
 	[ -d ~/.vsnip ] || ln -s $(PWD)/vsnip ~/.vsnip
 	[ -f ~/.rubocop.yml ] || ln -s $(PWD)/rubocop.yml ~/.rubocop.yml
 	[ -f ~/.config/lazygit/config.yml ] || ln -s $(PWD)/lazygit.conf ~/.config/lazygit/config.yml
-	[ -f ~/.config/alacritty/alacritty.toml ] || ln -s $(PWD)/alacritty.toml ~/.config/alacritty/alacritty.toml
 	[ -f ~/.config/wezterm/wezterm.lua ] || ln -s $(PWD)/wezterm.lua ~/.config/wezterm/wezterm.lua
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.config/zellij/config.kdl ] || ln -s $(PWD)/zellij.kdl ~/.config/zellij/config.kdl
@@ -48,7 +46,6 @@ clean:
 	rm -f ~/.vimrc
 	rm -f ~/.config/nvim/init.vim
 	rm -f ~/.config/nvim/init.lua
-	rm -f ~/.config/alacritty/alacritty.toml
 	rm -f ~/.config/wezterm/wezterm.lua
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.rubocop.yml
