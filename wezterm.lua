@@ -26,6 +26,11 @@ config.keys = {
     mods = 'CMD',
     action = wezterm.action.DisableDefaultAssignment,
   },
+  {
+    key = 't',
+    mods = 'CMD',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 -- Window
