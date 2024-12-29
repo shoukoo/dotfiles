@@ -1,0 +1,32 @@
+font-size = 25
+font-family = JetBrains Mono
+macos-option-as-alt = true
+keybind = cmd+r=reload_config
+
+#keybind = alt+l=next_tab
+#keybind = alt+x=close_surface
+#keybind = cmd+t=new_tab
+#
+#keybind = alt+right=new_split:right
+#keybind = alt+left=new_split:left
+#keybind = alt+up=new_split:up
+#keybind = alt+down=new_split:down
+#
+#keybind = alt+left=goto_split:left
+#
+## Resize split
+#keybind = alt+shift+h=resize_split:left,30
+#keybind = alt+shift+j=resize_split:down,30
+#keybind = alt+shift+k=resize_split:up,30
+#keybind = alt+shift+l=resize_split:right,30
+#
+#
+## Move to adjacent split
+#keybind = alt+h=goto_split:left
+#keybind = alt+j=goto_split:bottom
+#keybind = alt+k=goto_split:top
+#keybind = alt+l=goto_split:right
+#
+#
+## Cycle to next tab
+#keybind = shift+tab=next_tab
