@@ -1,3 +1,8 @@
+# Unbind 
+keybind = cmd+n=unbind
+keybind = cmd+t=unbind
+
+# Default
 font-size = 25
 font-family = JetBrains Mono
 macos-option-as-alt = true
