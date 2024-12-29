@@ -25,13 +25,17 @@ require("lazy").setup({
 
   -- golang
   { 'sebdah/vim-delve' },
+  { 'ray-x/go.nvim',
+    dir = "/Users/shoukoo/Code/shoukoo/go.nvim",
+  },
   { 'shoukoo/g0.nvim',
     config = function()
       require("g0").setup({
         gomodifytags = {
           tags = "xml,json",
           options = "json=omitempty"
-        }
+        },
+        timeout = 2000
       })
     end,
     dir = "/Users/shoukoo/Code/shoukoo/g0.nvim",
@@ -290,11 +294,7 @@ require("lazy").setup({
           -- Mappings.
           local opts = { noremap = true, silent = true }
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          if lsp == 'gopls' then
-            buf_set_keymap('n', 'gf', [[<Cmd>lua require"go.format".gofmt()<CR>]], opts)
-          else
-            buf_set_keymap('n', 'gf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
-          end
+          buf_set_keymap('n', 'gf', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
           buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
           buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
           buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
