@@ -63,7 +63,7 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 # =============
 #    EXPORT
 # =============
-export PATH="/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/bin:$HOME/go/bin:$HOME/.krew/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/bin:$HOME/go/bin:$HOME/.krew/bin:$PATH"
 export EDITOR="nvim"
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
