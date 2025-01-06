@@ -43,6 +43,12 @@ case `uname` in
   ;;
 esac
 
+
+# =============
+#   nix
+# =============
+[ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ] && . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'

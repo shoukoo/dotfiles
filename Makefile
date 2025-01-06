@@ -4,6 +4,9 @@ brew-dump:
 brew-list:
 	brew outdated
 
+nix-rebuild:
+	# Must use --impure since the private.nix is outside of the repo
+	darwin-rebuild switch --flake .#darwin --impure
 
 sync:
 	mkdir -p ~/Code/shoukoo
