@@ -10,13 +10,18 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
   let
     maybeImport = path: if builtins.pathExists path then import path else {};
-    privateConfig = maybeImport (builtins.toPath ./private.nix);
+    #privateConfig = import (builtins.toPath ./private.nix);
+    privateConfig = maybeImport "${builtins.getEnv "HOME"}/.config/nix/private.nix";
     configuration = { pkgs, ... }: {
 
      # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.age
+          pkgs.poetry
+          pkgs.pyenv
+          pkgs.python39
+          pkgs.python311
           pkgs.coreutils
           pkgs.curl
           pkgs.delve
