@@ -6,7 +6,7 @@ brew-list:
 
 nix-rebuild:
 	# Must use --impure since the private.nix is outside of the repo
-	darwin-rebuild switch --flake .#darwin --impure
+	nix run nix-darwin -- switch --flake ~/.config/nix#darwin --impure
 
 sync:
 	mkdir -p ~/Code/shoukoo
@@ -16,6 +16,7 @@ sync:
 	mkdir -p ~/.config/lazygit
 	mkdir -p ~/.config/zellij/plugins
 	mkdir -p ~/.config/ghostty
+	mkdir -p ~/.config/nix
 
 
 
@@ -35,10 +36,11 @@ sync:
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.config/zellij/config.kdl ] || ln -s $(PWD)/zellij.kdl ~/.config/zellij/config.kdl
 	[ -f  ~/.config/ghostty/config ] || ln -s $(PWD)/ghostty ~/.config/ghostty/config
+	[ -f  ~/.config/ghostty/flake.nix ] || ln -s $(PWD)/flake.nix ~/.config/nix/flake.nix
 
 	# go
-	go install github.com/justjanne/powerline-go@bedd965
-	go install github.com/jesseduffield/lazygit@latest
+	# go install github.com/justjanne/powerline-go@bedd965
+	# go install github.com/jesseduffield/lazygit@latest
 
   # git
 	git config --global core.excludesfile ~/.gitignore

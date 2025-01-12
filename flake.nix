@@ -10,7 +10,7 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
   let
     maybeImport = path: if builtins.pathExists path then import path else {};
-    privateConfig = maybeImport "${builtins.getEnv "HOME"}/.private.nix";
+    privateConfig = maybeImport (builtins.toPath ./private.nix);
     configuration = { pkgs, ... }: {
 
      # List packages installed in system profile. To search by name, run:
@@ -55,6 +55,8 @@
           "com.apple.swipescrolldirection" = false;
         };
 
+        # Display sound in the menu
+        controlcenter.Sound = true;
 
         #finder doesn't seem to work
         #finder.FXPreferredViewStyle = "clmv";
