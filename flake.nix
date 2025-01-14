@@ -19,6 +19,7 @@
       environment.systemPackages =
         [ pkgs.age
           pkgs.poetry
+          pkgs.nodejs_18
           pkgs.pyenv
           pkgs.python39
           pkgs.python311
