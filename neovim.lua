@@ -13,8 +13,25 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { "vimwiki/vimwiki" },
-  { "nvim-lua/plenary.nvim" },
 
+  -- Copilot
+  {
+    "zbirenbaum/copilot.lua",
+    config = function ()
+      require("copilot").setup({
+	      suggestion = { enabled = false },
+	      panel = { enabled = false },
+      })
+    end
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
+
+  { "nvim-lua/plenary.nvim" },
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -38,9 +55,7 @@ require("lazy").setup({
         timeout = 2000
       })
     end,
-    dir = "/Users/shoukoo/Code/shoukoo/g0.nvim",
   },
-
   {
     'shoukoo/git.nvim',
     config = function()
@@ -225,6 +240,7 @@ require("lazy").setup({
           behavior = cmp.ConfirmBehavior.Insert,
         },
         sources = {
+          { name = "copilot", group_index = 1 },
           { name = 'nvim_lsp' },
           { name = "luasnip", keyword_length = 2 },
           { name = "buffer", keyword_length = 5 },
@@ -325,7 +341,7 @@ require("lazy").setup({
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
       -- Use a loop to conveniently call 'setup' on multiple servers and
       -- map buffer local keybindings when the language server attaches
-      local servers = { 'gopls', 'denols', "lua_ls", "rust_analyzer" }
+      local servers = { 'gopls', 'denols', "lua_ls", "rust_analyzer", "pylsp" }
       for _, lsp in ipairs(servers) do
         nvim_lsp[lsp].setup({ on_attach = on_attach(lsp), settings = settings[lsp] })
       end
@@ -398,6 +414,7 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>Files<CR>]], { noremap = true,
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>Rg<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true, silent = true })
+
 ---------------------------------------------------------------------
 -- Diagnostics
 ---------------------------------------------------------------------
