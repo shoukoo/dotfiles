@@ -18,6 +18,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.age
+          pkgs.awscli
           pkgs.poetry
           pkgs.nodejs_18
           pkgs.pyenv
