@@ -294,6 +294,17 @@ require("lazy").setup({
   },
 
   {
+    'MagicDuck/grug-far.nvim',
+    config = function()
+      require('grug-far').setup({
+        -- options, see Configuration section below
+        -- there are no required options atm
+        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
+      });
+    end
+  },
+
+  {
     'neovim/nvim-lspconfig',
     config = function()
       require("neodev").setup({})
@@ -414,7 +425,10 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>Files<CR>]], { noremap = true,
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>Commits<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>Rg<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true, silent = true })
-
+---------------------------------------------------------------------
+-- Grugfar
+---------------------------------------------------------------------
+vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>GrugFar<CR>]], { noremap = true, silent = true })
 ---------------------------------------------------------------------
 -- Diagnostics
 ---------------------------------------------------------------------
