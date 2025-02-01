@@ -40,6 +40,7 @@
           pkgs.neovim
           pkgs.sqlite
           pkgs.zellij
+          pkgs.zig
         ];
 
       system.defaults = {
