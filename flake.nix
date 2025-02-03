@@ -34,13 +34,15 @@
           pkgs.htop
           pkgs.jq
           pkgs.jqp
-          pkgs.ripgrep
           pkgs.lua
           pkgs.lua-language-server
           pkgs.neovim
+          pkgs.ripgrep
           pkgs.sqlite
+          pkgs.tree
           pkgs.zellij
           pkgs.zig
+          pkgs.zls
         ];
 
       system.defaults = {
