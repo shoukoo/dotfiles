@@ -81,6 +81,7 @@
         "1password"
         "arc"
         "cold-turkey-blocker"
+        "homerow"
         "firefox"
         "ghostty"
         "maccy"
