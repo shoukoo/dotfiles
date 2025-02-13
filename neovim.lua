@@ -352,7 +352,7 @@ require("lazy").setup({
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
       -- Use a loop to conveniently call 'setup' on multiple servers and
       -- map buffer local keybindings when the language server attaches
-      local servers = { 'gopls', 'denols', "lua_ls", "rust_analyzer", "pylsp" }
+      local servers = { 'gopls', "lua_ls", "rust_analyzer", "pylsp" }
       for _, lsp in ipairs(servers) do
         nvim_lsp[lsp].setup({ on_attach = on_attach(lsp), settings = settings[lsp] })
       end
