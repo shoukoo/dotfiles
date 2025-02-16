@@ -86,6 +86,7 @@
         "ghostty"
         "maccy"
         "wireshark"
+        "nikitabobko/tap/aerospace"
       ];
 
 

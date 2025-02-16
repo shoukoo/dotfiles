@@ -17,8 +17,7 @@ sync:
 	mkdir -p ~/.config/zellij/plugins
 	mkdir -p ~/.config/ghostty
 	mkdir -p ~/.config/nix
-
-
+	mkdir -p ~/.config/aerospace
 
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] || git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 	[ -d ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search ] || git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
@@ -36,7 +35,8 @@ sync:
 	[ -f ~/.config/nvim/init.lua ] || ln -s $(PWD)/neovim.lua ~/.config/nvim/init.lua
 	[ -f ~/.config/zellij/config.kdl ] || ln -s $(PWD)/zellij.kdl ~/.config/zellij/config.kdl
 	[ -f  ~/.config/ghostty/config ] || ln -s $(PWD)/ghostty ~/.config/ghostty/config
-	[ -f  ~/.config/ghostty/flake.nix ] || ln -s $(PWD)/flake.nix ~/.config/nix/flake.nix
+	[ -f  ~/.config/nix/flake.nix ] || ln -s $(PWD)/flake.nix ~/.config/nix/flake.nix
+	[ -f  ~/.config/aerospace/aerospace.toml ] || ln -s $(PWD)/aerospace.toml ~/.config/aerospace/aerospace.toml
 
 	# go
 	# go install github.com/justjanne/powerline-go@bedd965
@@ -63,5 +63,6 @@ clean:
 	rm -f ~/.zshrc
 	rm -f ~/.gitignore
 	rm -f ~/.config/ghostty/config
+	rm -f ~/.config/aerospace
 
 .PHONY: all clean sync build run kill
