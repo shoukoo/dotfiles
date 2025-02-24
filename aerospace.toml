@@ -76,14 +76,14 @@ automatically-unhide-macos-hidden-apps = false
     alt-5 = 'workspace 5'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-    ctrl-semicolon = 'mode service'
+    # ctrl-semicolon = 'mode service'
     ctrl-g = 'mode control'
 
     alt-slash = 'layout tiles horizontal vertical'
     alt-comma = 'layout accordion horizontal vertical'
 
 [mode.control.binding]
-    esc = 'mode main'
+    esc = ['reload-config', 'mode main']
     ctrl-g = 'mode main'
 
     alt-1 = 'workspace 1'
@@ -126,10 +126,19 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-5 = 'move-node-to-workspace 5'
 
 
+    r = ['flatten-workspace-tree', 'mode main'] # reset layout
+    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    alt-shift-left = ['join-with left', 'mode main']
+    alt-shift-down = ['join-with down', 'mode main']
+    alt-shift-up = ['join-with up', 'mode main']
+    alt-shift-right = ['join-with right', 'mode main']
+
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-    esc = ['reload-config', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
     f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
     backspace = ['close-all-windows-but-current', 'mode main']
