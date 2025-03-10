@@ -17,16 +17,54 @@ require("lazy").setup({
   -- Copilot
   {
     "zbirenbaum/copilot.lua",
-    config = function ()
+    config = function()
       require("copilot").setup({
-	      suggestion = { enabled = false },
-	      panel = { enabled = false },
+        suggestion = { enabled = false },
+        panel = { enabled = false },
       })
     end
   },
+
+  {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
   {
     "zbirenbaum/copilot-cmp",
-    config = function ()
+    config = function()
       require("copilot_cmp").setup()
     end
   },
@@ -42,10 +80,12 @@ require("lazy").setup({
 
   -- golang
   { 'sebdah/vim-delve' },
-  { 'ray-x/go.nvim',
+  {
+    'ray-x/go.nvim',
     dir = "/Users/shoukoo/Code/shoukoo/go.nvim",
   },
-  { 'shoukoo/g0.nvim',
+  {
+    'shoukoo/g0.nvim',
     config = function()
       require("g0").setup({
         gomodifytags = {
@@ -76,7 +116,7 @@ require("lazy").setup({
             {
               'filename',
               file_status = true, -- displays file status (readonly status, modified status)
-              path = 2 -- 0 = just filename, 1 = relative path, 2 = absolute path
+              path = 2            -- 0 = just filename, 1 = relative path, 2 = absolute path
             }
           }
         }
@@ -243,7 +283,7 @@ require("lazy").setup({
           { name = "copilot", group_index = 1 },
           { name = 'nvim_lsp' },
           { name = "luasnip", keyword_length = 2 },
-          { name = "buffer", keyword_length = 5 },
+          { name = "buffer",  keyword_length = 5 },
         },
       })
     end,
@@ -278,7 +318,6 @@ require("lazy").setup({
           vim.keymap.set('n', 's', api.node.open.vertical, opts('Open: Vertical Split'))
           vim.keymap.set('n', 'i', api.node.open.horizontal, opts('Open: Horizontal Split'))
           vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
-
         end
       })
     end,
@@ -376,9 +415,9 @@ vim.cmd([[set undofile]])
 vim.cmd([[set splitbelow]])
 vim.cmd([[set splitright]])
 -- settings to insert spaces all the time.
-vim.opt.expandtab = true -- expand tabs into spaces
-vim.opt.shiftwidth = 2 -- number of spaces to use for each step of indent.
-vim.opt.tabstop = 2 -- number of spaces a TAB counts for
+vim.opt.expandtab = true  -- expand tabs into spaces
+vim.opt.shiftwidth = 2    -- number of spaces to use for each step of indent.
+vim.opt.tabstop = 2       -- number of spaces a TAB counts for
 vim.opt.autoindent = true -- copy indent from current line when starting a new line
 vim.opt.wrap = true
 
@@ -429,13 +468,6 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>Lines<CR>]], { noremap = true,
 -- Grugfar
 ---------------------------------------------------------------------
 vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>GrugFar<CR>]], { noremap = true, silent = true })
----------------------------------------------------------------------
--- Diagnostics
----------------------------------------------------------------------
-vim.keymap.set('n', '<leader>xo', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>xp', vim.diagnostic.goto_prev)
-vim.keymap.set('n', '<leader>xn', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>xs', vim.diagnostic.setqflist)
 ---------------------------------------------------------------------
 -- Oil
 ---------------------------------------------------------------------
