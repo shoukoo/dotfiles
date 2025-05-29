@@ -77,6 +77,9 @@
       # Homebrew needs to be installed on its own!
       homebrew.enable = true;
       homebrew.onActivation.cleanup = "uninstall";
+      homebrew.taps = [
+        "nikitabobko/tap"
+      ];
       homebrew.casks = [
         "1password"
         "arc"
@@ -86,7 +89,7 @@
         "ghostty"
         "maccy"
         "wireshark"
-        "nikitabobko/tap/aerospace"
+        "aerospace"
       ];
 
 

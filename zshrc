@@ -62,7 +62,7 @@ export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#585858'
-plugins=(zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting vi-mode direnv rbenv fzf)
+plugins=(zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting direnv rbenv fzf)
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
 
