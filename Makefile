@@ -6,7 +6,7 @@ brew-list:
 
 nix-rebuild:
 	# Must use --impure since the private.nix is outside of the repo
-	nix run nix-darwin -- switch --flake ~/.config/nix#darwin --impure
+	darwin-rebuild -- switch --flake ~/.config/nix#darwin --impure
 
 sync:
 	mkdir -p ~/Code/shoukoo
