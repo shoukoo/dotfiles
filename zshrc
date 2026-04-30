@@ -185,3 +185,4 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
+export PATH="$HOME/.local/bin:$PATH"
