@@ -80,10 +80,7 @@ require("lazy").setup({
 
   -- golang
   { 'sebdah/vim-delve' },
-  {
-    'ray-x/go.nvim',
-    dir = "/Users/shoukoo/Code/shoukoo/go.nvim",
-  },
+  { 'ray-x/go.nvim', },
   {
     'shoukoo/g0.nvim',
     config = function()
